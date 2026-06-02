@@ -5,9 +5,13 @@ import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { SECTION_IDS } from '@/utils/constants';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const activeSection = useScrollSpy(SECTION_IDS);
 
   useEffect(() => {
@@ -36,24 +40,29 @@ export const Header = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
 
-    const targetId = href.replace('#', '');
-    const targetElement = document.getElementById(targetId);
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      const targetId = href.replace('#', '');
+      const targetElement = document.getElementById(targetId);
 
-    if (targetElement) {
-      const headerOffset = 80;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      if (targetElement) {
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        window.history.pushState(null, '', href);
+      }
     }
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-md z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl bg-white/75 dark:bg-slate-950/45 backdrop-blur-xl border border-black/5 dark:border-white/5 rounded-2xl z-50 transition-all duration-300 shadow-lg dark:shadow-glow/5">
+      <div className="px-6 py-3.5 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <div className="h-10 w-10 bg-primary-brand rounded-lg flex items-center justify-center">
@@ -78,13 +87,20 @@ export const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`font-medium transition-colors duration-200 ${
+                  className={`relative font-medium px-2 py-1 transition-colors duration-300 ${
                     isActive
-                      ? 'text-primary-brand font-semibold'
-                      : 'text-slate-700 dark:text-slate-300 hover:text-primary-brand'
+                      ? 'text-primary-brand dark:text-blue-400 font-semibold'
+                      : 'text-slate-700 dark:text-slate-300 hover:text-primary-brand dark:hover:text-blue-400'
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-indicator"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-primary-brand to-secondary-brand rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </a>
               );
             })}

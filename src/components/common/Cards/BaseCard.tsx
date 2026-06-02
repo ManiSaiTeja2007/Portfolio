@@ -2,16 +2,17 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { motion } from 'framer-motion';
 import { cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
 const cardVariants = cva(
-  'bg-card rounded-xl shadow-lg overflow-hidden transition-all duration-300',
+  'bg-card rounded-2xl border border-slate-200/60 dark:border-slate-800/80 shadow-md transition-all duration-300 overflow-hidden',
   {
     variants: {
       elevation: {
         none: 'shadow-none',
         low: 'shadow-sm',
-        medium: 'shadow-md',
-        high: 'shadow-lg',
+        medium: 'shadow-md dark:hover:shadow-glow-primary/10 hover:border-primary-brand/35 dark:hover:border-primary-brand/35',
+        high: 'shadow-lg dark:hover:shadow-glow-primary/20 hover:border-primary-brand/50 dark:hover:border-primary-brand/50',
       },
       padding: {
         none: 'p-0',
@@ -53,7 +54,10 @@ const BaseCard = forwardRef<HTMLDivElement, BaseCardProps>(
     const cardContent = (
       <div
         ref={ref}
-        className={cardVariants({ elevation, padding, hoverable, className })}
+        className={cn(
+          cardVariants({ elevation, padding, hoverable, className }),
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900'
+        )}
         {...props}
       >
         {children}

@@ -2,22 +2,18 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from '../../common/Cards/ProjectCard';
-import { featuredProjects, getAllProjects } from '@/utils/projectsData';
+import { featuredProjects, getAllProjects, getTieredProjects } from '@/utils/projectsData';
 import { Link } from 'react-router-dom';
 import { Filter, ChevronDown, Sparkles } from 'lucide-react';
 
-type ProjectTier = 'all' | 'complex' | 'ui' | 'hardware';
+type ProjectTier = 'all' | 'complex' | 'ui' | 'hardware' | 'algorithms';
 
 export const Projects = () => {
   const [showAllFeatured, setShowAllFeatured] = useState(false);
   const [activeTier, setActiveTier] = useState<ProjectTier>('all');
 
-  // Tier projects based on complexity
-  const projectTiers = {
-    complex: featuredProjects.filter(p => p.category === 'aws' || p.category === 'nodejs'),
-    ui: featuredProjects.filter(p => p.category === 'react' || p.category === 'angular'),
-    hardware: featuredProjects.filter(p => p.category === 'arduino' || p.category === 'c'),
-  };
+  // Tier projects based on centralized filters
+  const projectTiers = getTieredProjects();
 
   const displayedProjects = showAllFeatured 
     ? featuredProjects 
@@ -25,7 +21,7 @@ export const Projects = () => {
 
   const getTierProjects = () => {
     if (activeTier === 'all') return displayedProjects;
-    return projectTiers[activeTier];
+    return projectTiers[activeTier] || [];
   };
 
   return (
@@ -77,8 +73,9 @@ export const Projects = () => {
             {[
               { id: 'all' as ProjectTier, label: 'All Projects', count: featuredProjects.length },
               { id: 'complex' as ProjectTier, label: 'Complex Systems', count: projectTiers.complex.length },
-              { id: 'ui' as ProjectTier, label: 'UI/UX Focus', count: projectTiers.ui.length },
-              { id: 'hardware' as ProjectTier, label: 'Hardware/IoT', count: projectTiers.hardware.length },
+              { id: 'ui' as ProjectTier, label: 'Web Tooling & UI', count: projectTiers.ui.length },
+              { id: 'hardware' as ProjectTier, label: 'Mobile & Edge AI', count: projectTiers.hardware.length },
+              { id: 'algorithms' as ProjectTier, label: 'Data & Analytics', count: projectTiers.algorithms.length },
             ].map((tier) => (
               <button
                 key={tier.id}

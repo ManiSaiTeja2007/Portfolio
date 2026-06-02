@@ -1,6 +1,7 @@
 // src/components/common/Cards/ProjectHeader.tsx
 import { memo } from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 import PrimaryButton from '../Buttons/PrimaryButton';
 
 interface ProjectHeaderProps {
@@ -38,7 +39,7 @@ export const ProjectHeader = memo(({
             }}
             aria-label="View GitHub repository"
           >
-            <Github size={18} />
+            <FaGithub size={18} />
           </PrimaryButton>
         )}
         {liveUrl && (

@@ -73,7 +73,7 @@ export const TechStackDisplay = memo(({
           {cleanTechnologies.slice(0, maxDisplay).map((tech, index) => (
             <span
               key={`${tech}-${index}`}
-              className="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs"
+              className="px-3 py-1.5 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-mono"
             >
               {tech}
             </span>

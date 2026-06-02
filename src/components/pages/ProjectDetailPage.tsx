@@ -1,7 +1,8 @@
 // src/components/pages/ProjectDetailPage.tsx
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Github, Calendar, Code, AlertCircle, Clock, Star } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Calendar, Code, AlertCircle, Clock, Star } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 import { getProjectById, getCategoryById } from '@/utils/projectsData';
 import { ProjectCard } from '../common/Cards/ProjectCard';
 import { useEffect, useState } from 'react';
@@ -138,7 +139,7 @@ export const ProjectDetailPage = () => {
                     rel="noopener noreferrer"
                     className="bg-white text-primary-brand px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center gap-2"
                   >
-                    <Github size={20} />
+                    <FaGithub size={20} />
                     <span>GitHub</span>
                   </a>
                 )}
@@ -466,7 +467,7 @@ export const ProjectDetailPage = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                   >
-                    <Github size={20} className="text-slate-700 dark:text-slate-300" />
+                    <FaGithub size={20} className="text-slate-700 dark:text-slate-300" />
                     <span className="font-medium text-slate-700 dark:text-slate-300">
                       View Source Code
                     </span>

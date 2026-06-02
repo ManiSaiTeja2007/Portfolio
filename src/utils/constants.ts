@@ -2,8 +2,8 @@
 export const PERSONAL_INFO = {
   name: 'Mani Sai Teja Bejjala',
   fullName: 'Mani Sai Teja Bejjala',
-  title: 'Frontend Developer & ECE Engineering Student',
-  description: '2nd Year ECE student at IIIT Sri City blending hardware knowledge with modern web development and AI/ML',
+  title: 'Data Analyst & Systems Engineer',
+  description: '2nd Year ECE student at IIIT Sri City bridging high-performance systems programming, data analytics, and physics-informed modeling with low-overhead interface design.',
   email: 'manisaiteja2007@gmail.com',
   location: 'Chittoor, Andhra Pradesh, India',
   graduationYear: 2028,
@@ -25,11 +25,12 @@ export const ACADEMIC_INFO = {
     'Signals and Systems',
     'Network Theory',
     'Microprocessors',
+    'Probability & Random Processes',
   ],
   achievements: [
-    'Active participant in coding competitions',
-    'Working on multiple personal projects',
-    'Learning new technologies continuously',
+    'Winner of Nasiko Labs Hackathon (AI Tooling Category)',
+    'Developing orbital physics-informed space debris tracking models',
+    'Built custom distributed Go proxy routing engines',
   ],
 };
 
@@ -80,31 +81,30 @@ export const COLORS = {
 
 // Tech Stack Categories
 export const TECH_CATEGORIES = [
-  'Frontend Development',
-  'Backend & APIs',
-  'Databases',
-  'Tools & Platforms',
-  'IoT & Hardware',
-  'AI/ML',
+  'Data Analytics & ML',
+  'Systems Programming',
+  'Edge AI & IoT',
+  'Databases & Querying',
+  'Developer Tooling',
   'Programming Languages',
 ];
 
 // Current Focus Areas
 export const FOCUS_AREAS = [
-  'Frontend Architecture with React & TypeScript',
-  'IoT Systems and Embedded Programming',
-  'AI/ML Integration in Web Applications',
-  'Full-Stack Web Development',
-  'System Design & Architecture',
+  'Data Analytics & Physics-Informed Modeling',
+  'High-Performance Systems & Routing in Go',
+  'Edge AI & Mobile Processing in Kotlin',
+  'Monaco-based Diff Verification Systems',
+  'Orbits & Space Debris Telemetry Tracking',
 ];
 
 // Goals
 export const GOALS = [
-  'Complete impactful internships in tech companies',
-  'Build 50+ projects across different tech stacks',
-  'Contribute to open-source projects',
-  'Master system design and architecture',
-  'Bridge hardware and software development',
+  'Deploy production-ready distributed proxy gateways',
+  'Publish orbital analysis research for satellite collision avoidance',
+  'Validate edge machine learning inference pipelines',
+  'Design high-speed UDP data streaming engines',
+  'Master system design and high-volume data architecture',
 ];
 
 // Availability Status
@@ -123,3 +123,21 @@ export const GITHUB_CONFIG = {
     dark: 'dracula',
   },
 };
+
+// Value Propositions Key Benefits
+export const VALUE_PROPS_BENEFITS = [
+  'Performance-Optimized Code',
+  'System-Level Thinking',
+  'Future-Proof Architecture',
+  'Seamless Integration',
+];
+
+// Fun Facts Configuration
+export const FUN_FACTS = {
+  quote: "I love blending my ECE background with frontend development, constantly experimenting with new tech stacks to create innovative projects that seamlessly bridge hardware and software!",
+  paragraphs: [
+    "When I'm not coding, you can find me exploring new IoT projects, contributing to open-source, or learning about the latest advancements in web technologies.",
+    "I believe that the best solutions come from understanding both the hardware and software sides of technology."
+  ],
+};
+

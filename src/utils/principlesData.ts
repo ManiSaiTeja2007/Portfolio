@@ -1,32 +1,40 @@
 // src/utils/principlesData.ts
-import type { ProfessionalPrinciple } from '@/types/portfolio';
 
-export const principlesData: ProfessionalPrinciple[] = [
+export interface PrincipleItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export const principlesData: PrincipleItem[] = [
   {
-    id: 'engineering-excellence',
-    title: 'Engineering Excellence',
-    description: 'Building systems that are not just functional, but exemplary in their architecture, performance, and maintainability.',
-    icon: '⚙️'
+    icon: '🔍',
+    title: 'Understand First',
+    description: 'Spend time understanding the problem domain, constraints, and requirements before writing any code.'
   },
   {
-    id: 'strategic-impact',
-    title: 'Strategic Impact',
-    description: 'Focusing on work that creates measurable business value through elegant, scalable solutions.',
-    icon: '🎯'
+    icon: '⚡',
+    title: 'Optimize Intelligently',
+    description: 'Write efficient code that considers both algorithmic complexity and hardware constraints.'
   },
   {
-    id: 'continuous-evolution',
-    title: 'Continuous Evolution',
-    description: 'Mastery through constant refinement while staying ahead of technology curves.',
-    icon: '📈'
+    icon: '🌱',
+    title: 'Build to Evolve',
+    description: 'Create solutions that can adapt and grow, not just solve today\'s requirements.'
   },
   {
-    id: 'precision-communication',
-    title: 'Precision Communication',
-    description: 'Clear, concise technical communication making complex concepts understandable.',
-    icon: '💬'
+    icon: '🎯',
+    title: 'Focus on Impact',
+    description: 'Prioritize work that creates real value and solves meaningful problems.'
+  },
+  {
+    icon: '🤝',
+    title: 'Collaborate Openly',
+    description: 'Share knowledge, learn from others, and contribute to the developer community.'
+  },
+  {
+    icon: '📚',
+    title: 'Learn Continuously',
+    description: 'Stay curious and keep updating skills with emerging technologies and best practices.'
   }
 ];
-
-// Named export
-export { principlesData as principles };

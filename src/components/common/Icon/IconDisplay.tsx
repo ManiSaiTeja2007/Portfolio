@@ -54,7 +54,7 @@ export const IconDisplay = ({
         return (
           <div
             key={`${tech}-${index}`}
-            className="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+            className="flex items-center gap-2 px-3 py-1.5 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/80 rounded-lg transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-900/60 hover:border-slate-300 dark:hover:border-slate-700"
             title={tech}
           >
             {isLoading ? (
@@ -90,7 +90,7 @@ export const IconDisplay = ({
       })}
 
       {hasMore && (
-        <div className="flex items-center gap-1 px-3 py-2 bg-slate-100 dark:bg-slate-700 rounded-lg">
+        <div className="flex items-center gap-1 px-3 py-1.5 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/80 rounded-lg">
           <span className="text-xs text-slate-500">
             +{technologies.length - maxDisplay} more
           </span>

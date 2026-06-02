@@ -23,16 +23,19 @@ export interface GitHubStats {
 }
 
 export async function fetchGitHubStats(): Promise<GitHubStats> {
-    // Simple in-memory cache
     const cacheKey = 'github-stats';
-    const cached = sessionStorage.getItem(cacheKey);
+    const cacheDuration = 24 * 60 * 60 * 1000; // 24 hours
 
-    if (cached) {
-        const { data, timestamp } = JSON.parse(cached);
-        // Cache for 1 hour
-        if (Date.now() - timestamp < 60 * 60 * 1000) {
-            return data;
+    try {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+            const { data, timestamp } = JSON.parse(cached);
+            if (Date.now() - timestamp < cacheDuration) {
+                return data as GitHubStats;
+            }
         }
+    } catch (e) {
+        console.warn('Failed to parse cached stats', e);
     }
 
     try {
@@ -62,11 +65,14 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
             updatedAt: new Date().toISOString()
         };
 
-        // Cache the result
-        sessionStorage.setItem(cacheKey, JSON.stringify({
-            data: result,
-            timestamp: Date.now()
-        }));
+        try {
+            localStorage.setItem(cacheKey, JSON.stringify({
+                data: result,
+                timestamp: Date.now()
+            }));
+        } catch (e) {
+            console.warn('Failed to save stats to cache', e);
+        }
 
         return result;
     } catch (error) {

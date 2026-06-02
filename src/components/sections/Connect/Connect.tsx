@@ -1,34 +1,33 @@
 // src/components/sections/Connect/Connect.tsx
 import { motion } from 'framer-motion';
-import { 
-  Github, Linkedin, Twitter, Codepen, 
-  MessageSquare, Hash, Code, Database 
-} from 'lucide-react';
+import { Hash } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaCodepen, FaKaggle, FaDiscord, FaDev } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { SOCIAL_LINKS } from '@/utils/constants';
 
 const socialLinks = [
   {
     name: 'GitHub',
     url: SOCIAL_LINKS.github,
-    icon: <Github size={24} />,
+    icon: <FaGithub size={24} />,
     color: 'hover:text-gray-900 dark:hover:text-white',
   },
   {
     name: 'LinkedIn',
     url: SOCIAL_LINKS.linkedin,
-    icon: <Linkedin size={24} />,
+    icon: <FaLinkedin size={24} />,
     color: 'hover:text-blue-700',
   },
   {
     name: 'Twitter',
     url: SOCIAL_LINKS.twitter,
-    icon: <Twitter size={24} />,
+    icon: <FaXTwitter size={24} />,
     color: 'hover:text-blue-400',
   },
   {
     name: 'Kaggle',
     url: SOCIAL_LINKS.kaggle,
-    icon: <Database size={24} />,
+    icon: <FaKaggle size={24} />,
     color: 'hover:text-blue-500',
   },
   {
@@ -40,19 +39,19 @@ const socialLinks = [
   {
     name: 'Discord',
     url: SOCIAL_LINKS.discord,
-    icon: <MessageSquare size={24} />,
+    icon: <FaDiscord size={24} />,
     color: 'hover:text-purple-600',
   },
   {
     name: 'CodePen',
     url: SOCIAL_LINKS.codepen,
-    icon: <Codepen size={24} />,
+    icon: <FaCodepen size={24} />,
     color: 'hover:text-black dark:hover:text-white',
   },
   {
     name: 'Dev.to',
     url: SOCIAL_LINKS.devto,
-    icon: <Code size={24} />,
+    icon: <FaDev size={24} />,
     color: 'hover:text-black dark:hover:text-white',
   },
 ];

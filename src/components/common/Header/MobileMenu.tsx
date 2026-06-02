@@ -1,5 +1,6 @@
 // src/components/common/Header/MobileMenu.tsx
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface MobileMenuLink {
   href: string;
@@ -14,6 +15,8 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ isOpen, links, activeSection, onClose }: MobileMenuProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const menuVariants = {
     closed: {
       height: 0,
@@ -35,20 +38,24 @@ export const MobileMenu = ({ isOpen, links, activeSection, onClose }: MobileMenu
     e.preventDefault();
     onClose();
 
-    // Get the target element
-    const targetId = href.replace('#', '');
-    const targetElement = document.getElementById(targetId);
+    if (location.pathname !== '/') {
+      navigate('/' + href);
+    } else {
+      const targetId = href.replace('#', '');
+      const targetElement = document.getElementById(targetId);
 
-    if (targetElement) {
-      // Account for fixed header height
-      const headerOffset = 80; // Adjust this value based on your header height
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      if (targetElement) {
+        // Account for fixed header height
+        const headerOffset = 80; 
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        window.history.pushState(null, '', href);
+      }
     }
   };
 

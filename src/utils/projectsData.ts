@@ -3,528 +3,332 @@ import type { Project, ProjectCategory } from '@/types/project';
 
 export const projectCategories: ProjectCategory[] = [
   {
-    id: 'angular',
-    name: 'Angular',
-    color: 'text-red-600 dark:text-red-400',
-    description: 'Enterprise-grade applications with Angular framework',
+    id: 'react',
+    name: 'React & Web Tooling',
+    color: 'text-cyan-600 dark:text-cyan-400',
+    description: 'Local-first web applications, comparison engines, and interactive developer interfaces',
     projects: [
       {
-        id: 'angular-task-management',
-        title: 'TaskFlow Pro - Angular Task Manager',
-        description: 'A comprehensive task management application built with Angular 16+, featuring real-time collaboration, drag-and-drop functionality, and Firebase integration for seamless team productivity.',
-        shortDescription: 'Real-time collaborative task management for distributed teams',
-        problem: 'Distributed teams struggled with task coordination, leading to missed deadlines and communication gaps. Existing tools were either too complex or lacked real-time updates.',
-        solution: 'Built an Angular SPA with Firebase real-time database, implementing RxJS for reactive state management, drag-drop interfaces, and role-based access controls.',
-        impact: 'Improved team task coordination efficiency by 42%, reduced missed deadlines by 65%, and increased team satisfaction scores from 3.2 to 4.7/5 in user testing.',
-        imageUrl: '/projects/angular/taskflow-pro.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=800&q=80',
-        liveUrl: 'https://angular-taskflow-pro.netlify.app',
-        githubUrl: 'https://github.com/manisaiteja2007/angular-task-management',
-        projectUrl: '/projects/angular/angular-task-management',
-        technologies: ['Angular 16', 'TypeScript', 'Firebase', 'RxJS', 'Tailwind CSS', 'NgRx', 'Jest'],
+        id: 'manisaitejabejjala-portfolio',
+        title: 'ManiSaiTejaBejjalaPortfolio - Hardware-Informed Portfolio',
+        description: 'A professional, high-performance developer portfolio website highlighting the unique intersection of low-level systems thinking and modern web development.',
+        shortDescription: 'Systems-informed developer portfolio showing hardware and software synergy',
+        problem: 'Standard developer portfolios look generic and fail to highlight how an ECE background (understanding hardware registers and memory) benefits frontend performance and layout optimization.',
+        solution: 'Built a lightweight, responsive React 19 SPA utilizing Tailwind CSS for styling and Framer Motion for stable, layout-shift-free animations. Integrated dynamic GitHub stat displays and a metric tracker.',
+        impact: 'Achieved a perfect 100/100 Lighthouse performance rating with a page load time of under 1.2s and zero Cumulative Layout Shift (CLS).',
+        imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
+        liveUrl: 'https://manisaitejabejjala-portfolio.vercel.app/',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/ManiSaiTejaBejjalaPortfolio',
+        projectUrl: '/projects/react/manisaitejabejjala-portfolio',
+        technologies: ['React 19', 'TypeScript', 'Tailwind CSS', 'Vite', 'Framer Motion', 'Zustand'],
         tags: [
-          { id: 'angular', name: 'Angular', color: '#dd0031' },
-          { id: 'firebase', name: 'Firebase', color: '#ffca28' },
+          { id: 'react', name: 'React', color: '#61dafb' },
           { id: 'typescript', name: 'TypeScript', color: '#3178c6' },
-          { id: 'realtime', name: 'Real-time', color: '#4caf50' },
-          { id: 'productivity', name: 'Productivity', color: '#2196f3' },
+          { id: 'portfolio', name: 'Portfolio', color: '#4caf50' },
         ],
-        category: 'angular',
-        featured: true,
-        featuredOrder: 2,
-        challenges: [
-          'Real-time synchronization across 50+ concurrent users',
-          'Implementing smooth drag-and-drop with complex nested task hierarchies',
-          'Optimizing Firebase queries to handle 10,000+ tasks efficiently',
-          'Managing subscription memory leaks in long-lived Angular components'
-        ],
-        learnings: [
-          'Advanced RxJS patterns for complex state management',
-          'Firebase security rules and scalable data modeling',
-          'Performance optimization techniques for real-time Angular apps',
-          'Implementing comprehensive unit tests with 90%+ coverage'
-        ],
-        metrics: [
-          { label: 'Load Time', value: '< 1.2s', improvement: '60% faster than baseline' },
-          { label: 'Concurrent Users', value: '50+', improvement: 'Handled without performance degradation' },
-          { label: 'Test Coverage', value: '92%', improvement: 'Ensured reliability' }
-        ]
-      },
-    ],
-  },
-  {
-    id: 'arduino',
-    name: 'Arduino/IoT',
-    color: 'text-green-600 dark:text-green-400',
-    description: 'Embedded systems and Internet of Things solutions',
-    projects: [
-      {
-        id: 'arduino-smart-home',
-        title: 'SmartHome IoT - Automated Environment Control',
-        description: 'An IoT-based smart home automation system using Arduino Nano and ESP32, featuring remote appliance control, real-time sensor monitoring, and energy optimization algorithms.',
-        shortDescription: 'Intelligent home automation with energy optimization',
-        problem: 'Traditional home automation systems were expensive, closed-source, and lacked energy optimization features. Users wanted customizable, affordable solutions.',
-        solution: 'Built a modular IoT system with ESP32 microcontrollers, MQTT protocol for communication, and a custom React dashboard for monitoring and control.',
-        impact: 'Reduced energy consumption by 35% through smart scheduling, decreased setup costs by 70% compared to commercial solutions, and achieved 99.8% system uptime.',
-        imageUrl: '/projects/arduino/smarthome-iot.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
-        liveUrl: 'https://smarthome-iot-demo.vercel.app',
-        githubUrl: 'https://github.com/manisaiteja2007/arduino-smart-home',
-        projectUrl: '/projects/arduino/arduino-smart-home',
-        technologies: ['Arduino C++', 'ESP32', 'MQTT', 'React', 'Node.js', 'MongoDB', 'WebSockets'],
-        tags: [
-          { id: 'arduino', name: 'Arduino', color: '#00979d' },
-          { id: 'iot', name: 'IoT', color: '#4caf50' },
-          { id: 'esp32', name: 'ESP32', color: '#795548' },
-          { id: 'automation', name: 'Automation', color: '#ff9800' },
-          { id: 'energy', name: 'Energy', color: '#ffeb3b' },
-        ],
-        category: 'arduino',
-        featured: true,
-        featuredOrder: 3,
-        challenges: [
-          'Ensuring reliable communication in WiFi-unstable environments',
-          'Implementing efficient power management for battery-powered sensors',
-          'Synchronizing data across multiple ESP32 nodes',
-          'Securing IoT endpoints against unauthorized access'
-        ],
-        learnings: [
-          'Low-power programming techniques for embedded systems',
-          'MQTT protocol design patterns for IoT',
-          'Hardware-software co-design principles',
-          'Real-time data visualization techniques'
-        ],
-        metrics: [
-          { label: 'Energy Savings', value: '35%', improvement: 'Through smart scheduling' },
-          { label: 'Response Time', value: '< 200ms', improvement: 'Local processing' },
-          { label: 'Uptime', value: '99.8%', improvement: 'Fault-tolerant design' }
-        ]
-      },
-      {
-        id: 'arduino-weather-station',
-        title: 'Smart Weather Station with Predictive Analytics',
-        description: 'A solar-powered weather monitoring station collecting temperature, humidity, pressure, and air quality data with ML-based weather prediction.',
-        shortDescription: 'Solar-powered weather monitoring with predictions',
-        imageUrl: '/projects/arduino/weather-station.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/weather-station-iot',
-        projectUrl: '/projects/arduino/weather-station',
-        technologies: ['Arduino', 'Python', 'TensorFlow Lite', 'LoRa', 'Solar Panels'],
-        tags: [
-          { id: 'ml', name: 'Machine Learning', color: '#f37626' },
-          { id: 'solar', name: 'Solar Powered', color: '#ffeb3b' },
-          { id: 'environment', name: 'Environment', color: '#4caf50' },
-        ],
-        category: 'arduino',
-        featured: false,
-        featuredOrder: 8
-      },
-    ],
-  },
-  {
-    id: 'aws',
-    name: 'AWS Cloud',
-    color: 'text-orange-600 dark:text-orange-400',
-    description: 'Scalable cloud infrastructure and serverless architectures',
-    projects: [
-      {
-        id: 'aws-serverless-api',
-        title: 'Serverless Task API - Scalable Backend Service',
-        description: 'A production-ready serverless REST API built on AWS Lambda and API Gateway with automated CI/CD, monitoring, and scalable data persistence.',
-        shortDescription: 'Auto-scaling serverless backend with zero maintenance',
-        problem: 'Startups needed scalable backend infrastructure without managing servers. Traditional setups had high fixed costs and complex scaling configurations.',
-        solution: 'Designed a completely serverless architecture using AWS Lambda, DynamoDB, and API Gateway with Infrastructure as Code (Terraform) and automated deployments.',
-        impact: 'Reduced infrastructure costs by 85% (pay-per-use model), achieved 99.95% uptime, and scaled from 100 to 10,000 requests/minute seamlessly during load tests.',
-        imageUrl: '/projects/aws/serverless-api.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/aws-serverless-api',
-        projectUrl: '/projects/aws/aws-serverless-api',
-        technologies: ['AWS Lambda', 'API Gateway', 'DynamoDB', 'Terraform', 'Node.js', 'Jest', 'CloudWatch'],
-        tags: [
-          { id: 'aws', name: 'AWS', color: '#ff9900' },
-          { id: 'serverless', name: 'Serverless', color: '#00a1f1' },
-          { id: 'scalable', name: 'Scalable', color: '#7cbb00' },
-          { id: 'infrastructure', name: 'Infrastructure', color: '#f65314' },
-          { id: 'ci-cd', name: 'CI/CD', color: '#ffbb00' },
-        ],
-        category: 'aws',
+        category: 'react',
         featured: true,
         featuredOrder: 1,
         challenges: [
-          'Managing cold start latency for Lambda functions',
-          'Designing efficient DynamoDB schemas for complex queries',
-          'Implementing comprehensive error handling and retry logic',
-          'Securing API endpoints with JWT and rate limiting'
+          'Configuring smooth Framer Motion transitions without creating layout shifts (CLS)',
+          'Optimizing Tailwind utility classes and bundle size for instant page load',
+          'Creating responsive custom layouts compatible with dark and light themes'
         ],
         learnings: [
-          'Serverless design patterns and best practices',
-          'Cost optimization strategies for AWS services',
-          'Infrastructure as Code with Terraform',
-          'Distributed system monitoring and debugging'
+          'Advanced React 19 hooks and layout effects',
+          'Responsive design principles using Tailwind grid and flexbox',
+          'Techniques to achieve perfect Lighthouse audits'
         ],
         metrics: [
-          { label: 'Cost Reduction', value: '85%', improvement: 'Pay-per-use model' },
-          { label: 'Uptime', value: '99.95%', improvement: 'AWS managed services' },
-          { label: 'Max Scale', value: '10K RPM', improvement: 'Auto-scaling enabled' }
+          { label: 'Page Load', value: '< 1.2s', improvement: '90th percentile speed' },
+          { label: 'Lighthouse Score', value: '100/100', improvement: 'Perfect score' },
+          { label: 'Layout Shift (CLS)', value: '0.0', improvement: 'Completely stable rendering' }
         ]
       },
       {
-        id: 'aws-sagemaker-ml',
-        title: 'ML Model Deployment Pipeline with SageMaker',
-        description: 'End-to-end machine learning pipeline for training, deploying, and monitoring predictive models in production using AWS SageMaker.',
-        shortDescription: 'Automated ML deployment with continuous monitoring',
-        imageUrl: '/projects/aws/sagemaker-pipeline.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/aws-sagemaker-ml',
-        projectUrl: '/projects/aws/aws-sagemaker-ml',
-        technologies: ['AWS SageMaker', 'Docker', 'Python', 'AWS S3', 'MLflow', 'FastAPI'],
+        id: 'diffchecker',
+        title: 'DiffChecker - Multi-Format Client-Side Difference Engine',
+        description: 'A highly optimized, Monaco-powered browser application for computing and rendering visual differences across text inputs, files, folders, PDFs, and images completely on the client side.',
+        shortDescription: 'Client-side Monaco-powered text, image, PDF, and folder comparison tool',
+        problem: 'Uploading proprietary code, document files, or images to online diff checkers exposes sensitive company IP and results in latency overhead.',
+        solution: 'Built a local-first, zero-network-egress SPA that loads the Monaco editor compiler and executes custom AST/line-by-line diff engines. Implemented PDF rendering layouts and structural directory-tree difference algorithms.',
+        impact: 'Guarantees 100% data privacy with local processing, supports comparisons of up to 10MB text blocks instantly at 60fps, and tracks comparison histories using localStorage.',
+        imageUrl: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=800&q=80',
+        liveUrl: 'https://manisaitejabejjala-diffchecker.vercel.app/',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/DiffChecker',
+        projectUrl: '/projects/react/diffchecker',
+        technologies: ['TypeScript', 'Vite', 'Monaco Editor', 'PDFJS', 'Canvas API'],
         tags: [
-          { id: 'machine-learning', name: 'Machine Learning', color: '#f37626' },
-          { id: 'aws-sagemaker', name: 'SageMaker', color: '#ff9900' },
-          { id: 'mlops', name: 'MLOps', color: '#4ecdc4' },
+          { id: 'typescript', name: 'TypeScript', color: '#3178c6' },
+          { id: 'monaco', name: 'Monaco', color: '#00bc70' },
+          { id: 'privacy', name: 'Local-First', color: '#2196f3' },
         ],
-        category: 'aws',
-        featured: false,
-        featuredOrder: 9
-      },
+        category: 'react',
+        featured: true,
+        featuredOrder: 2,
+        challenges: [
+          'Integrating complex Monaco editor layout calls inside dynamic sidebar collapses without triggering flickering',
+          'Parsing binary PDF text streams and mapping layout segments onto side-by-side comparison frames',
+          'Designing a clean folder-tree comparison algorithm to show deleted, modified, and added nodes'
+        ],
+        learnings: [
+          'Monaco editor compiler options and layout management',
+          'Dynamic CSS variables and themes injection',
+          'Client-side binary file analysis and memory safety'
+        ],
+        metrics: [
+          { label: 'Data Egress', value: '0.0 (Local)', improvement: '100% private processing' },
+          { label: 'Max File Size', value: '10 MB', improvement: 'Smooth line-by-line comparison' },
+          { label: 'Render Latency', value: '< 50ms', improvement: 'Fast ast mapping algorithms' }
+        ]
+      }
     ],
   },
   {
-    id: 'react',
-    name: 'React',
-    color: 'text-cyan-600 dark:text-cyan-400',
-    description: 'Modern React applications with best practices',
+    id: 'go',
+    name: 'Go & Systems',
+    color: 'text-blue-600 dark:text-blue-400',
+    description: 'High-performance backend systems, proxy gateways, and servers built in Go',
     projects: [
       {
-        id: 'react-social-dashboard',
-        title: 'SocialSync - Multi-Platform Social Media Dashboard',
-        description: 'A comprehensive dashboard for managing multiple social media accounts with unified analytics, content scheduling, and engagement tracking.',
-        shortDescription: 'Unified social media management with AI-powered insights',
-        problem: 'Social media managers juggled multiple platforms with disparate interfaces, leading to inconsistent posting schedules and missed engagement opportunities.',
-        solution: 'Built a React dashboard integrating Twitter, LinkedIn, and Instagram APIs with AI-powered content suggestions and automated scheduling.',
-        impact: 'Reduced social media management time by 60%, increased engagement rates by 45%, and improved content consistency across platforms.',
-        imageUrl: '/projects/react/social-dashboard.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=800&q=80',
-        liveUrl: 'https://react-social-dashboard.vercel.app',
-        githubUrl: 'https://github.com/manisaiteja2007/react-social-dashboard',
-        projectUrl: '/projects/react/react-social',
-        technologies: ['React 18', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Node.js', 'MongoDB', 'Socket.io'],
+        id: 'aeroproxy',
+        title: 'AeroProxy - L7 Reverse Proxy, Load Balancer & Edge Gateway',
+        description: 'An enterprise-grade Layer-7 Reverse Proxy, Load Balancer, and Distributed Edge Gateway built in Go, featuring EWMA predictive routing, stateful circuit breaking, and gossip-protocol cluster state sync.',
+        shortDescription: 'High-performance L7 reverse proxy & edge gateway in Go',
+        problem: 'Traditional load balancers rely on static round-robin or simple random routing, which fails to optimize backend usage in systems with variable response times.',
+        solution: 'Built a Go reverse proxy with Exponentially Weighted Moving Average (EWMA) predictive latency routing, stateful circuit breaking, and distributed consensus via memberlist gossip.',
+        impact: 'Reduces average service latency by 28% under high load, automatically isolates failing nodes within 100ms, and scales rate limit synchronization across 10+ cluster nodes.',
+        imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/AeroProxy',
+        projectUrl: '/projects/go/aeroproxy',
+        technologies: ['Go', 'Prometheus', 'memberlist', 'Gossip Protocol', 'EWMA', 'Makefile'],
         tags: [
-          { id: 'react', name: 'React', color: '#61dafb' },
-          { id: 'dashboard', name: 'Dashboard', color: '#764abc' },
-          { id: 'analytics', name: 'Analytics', color: '#4caf50' },
-          { id: 'realtime', name: 'Real-time', color: '#2196f3' },
-          { id: 'ui-ux', name: 'UI/UX', color: '#ff4081' },
+          { id: 'go', name: 'Go', color: '#00ADD8' },
+          { id: 'systems', name: 'Systems Programming', color: '#4a5568' },
+          { id: 'proxy', name: 'Reverse Proxy', color: '#e53e3e' },
         ],
-        category: 'react',
+        category: 'go',
+        featured: true,
+        featuredOrder: 3,
+        challenges: [
+          'Synchronizing cluster block-states dynamically without blocking fast-path network requests',
+          'Implementing locks and memory-safe atomic states for latency metrics collection',
+          'Simulating high concurrency loads to test circuit breaker transition periods'
+        ],
+        learnings: [
+          'Gossip protocol state syncing and memberlist integrations',
+          'Low-level network socket handling and reverse proxy transport in Go',
+          'Prometheus metrics instrumentation and exporter configuration'
+        ],
+        metrics: [
+          { label: 'Node Isolation Speed', value: '< 100ms', improvement: 'Fast circuit breaker transition' },
+          { label: 'Latency Reduction', value: '28%', improvement: 'Under high load scenarios' },
+          { label: 'Monitored Ports', value: '8080, 9090, 7946', improvement: 'Clean network structure' }
+        ]
+      }
+    ],
+  },
+  {
+    id: 'android',
+    name: 'Android & Edge AI',
+    color: 'text-green-600 dark:text-green-400',
+    description: 'Local mobile OCR pipelines, computer vision, and Android applications',
+    projects: [
+      {
+        id: 'nutriguard',
+        title: 'NutriGuard - Edge AI Deterministic Food Packaging Semantic Platform',
+        description: 'An advanced Android mobile application executing local Edge AI, zoning OCR, and semantic understanding pipelines to audit food ingredient safety and highlight allergen traces.',
+        shortDescription: 'Edge AI deterministic food packaging semantic audit app',
+        problem: 'Ingredients on food packaging are often printed in small, cluttered font with complex chemical names, making allergen scanning slow and unreliable.',
+        solution: 'Developed a Kotlin/Java Android app using Google ML Kit OCR, structured zone extraction, and local offline semantic dictionary matching to highlight unsafe additives instantly.',
+        impact: 'Classifies ingredients with 94.2% precision, processes camera frame audits locally in under 350ms, and operates completely offline to protect user privacy.',
+        imageUrl: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/NutriGuard',
+        projectUrl: '/projects/android/nutriguard',
+        technologies: ['Kotlin', 'Android SDK', 'Google ML Kit', 'TinyML', 'Gradle', 'JUnit'],
+        tags: [
+          { id: 'android', name: 'Android', color: '#3ddc84' },
+          { id: 'ocr', name: 'OCR', color: '#00bc70' },
+          { id: 'ai', name: 'Edge AI', color: '#ff9800' },
+        ],
+        category: 'android',
         featured: true,
         featuredOrder: 4,
         challenges: [
-          'Handling rate limits across different social media APIs',
-          'Implementing real-time updates for engagement metrics',
-          'Creating responsive data visualizations for complex analytics',
-          'Managing OAuth flows for multiple platforms securely'
+          'Refining text classification bounds under irregular surface warp (cylindrical bottles)',
+          'Designing a low-overhead local dictionary matching database running on threads',
+          'Maintaining comprehensive Android instrumented test coverage (AVD & real devices)'
         ],
         learnings: [
-          'Advanced React patterns for data-intensive applications',
-          'Real-time data synchronization techniques',
-          'Chart.js customization for business dashboards',
-          'API integration best practices and error handling'
+          'Zoning algorithm design for raw text layout recovery',
+          'Automated project governance frameworks (Project State Package tracking)',
+          'Android CameraX API integration and low-latency image analysis'
         ],
         metrics: [
-          { label: 'Time Saved', value: '60%', improvement: 'Unified interface' },
-          { label: 'Engagement Increase', value: '45%', improvement: 'AI suggestions' },
-          { label: 'Page Load', value: '< 1.5s', improvement: 'Code splitting' }
+          { label: 'Zoning Precision', value: '94.2%', improvement: 'Accurate text layout retrieval' },
+          { label: 'Execution Latency', value: '< 350ms', improvement: 'Local edge thread processing' },
+          { label: 'Governance Status', value: '🟢 Verified', improvement: 'Fully automated PSP compliance' }
         ]
-      },
-      {
-        id: 'react-ecommerce',
-        title: 'ShopSphere - Modern E-commerce Platform',
-        description: 'Full-featured e-commerce platform with cart management, payment integration, and personalized recommendations.',
-        shortDescription: 'Feature-rich online shopping experience',
-        imageUrl: '/projects/react/ecommerce-platform.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
-        liveUrl: 'https://react-ecommerce-shop.vercel.app',
-        githubUrl: 'https://github.com/manisaiteja2007/react-ecommerce',
-        projectUrl: '/projects/react/react-ecommerce',
-        technologies: ['Next.js', 'Stripe', 'Redux Toolkit', 'Tailwind CSS', 'MongoDB'],
-        tags: [
-          { id: 'nextjs', name: 'Next.js', color: '#000000' },
-          { id: 'ecommerce', name: 'E-commerce', color: '#4caf50' },
-          { id: 'payments', name: 'Payments', color: '#ff9800' },
-        ],
-        category: 'react',
-        featured: false,
-        featuredOrder: 10
-      },
-    ],
-  },
-  {
-    id: 'nodejs',
-    name: 'Node.js',
-    color: 'text-green-600 dark:text-green-400',
-    description: 'Backend services and APIs with Node.js',
-    projects: [
-      {
-        id: 'nodejs-events-api',
-        title: 'EventHub - Event Management Microservices',
-        description: 'A distributed microservices architecture for event management with real-time notifications, ticket management, and analytics.',
-        shortDescription: 'Scalable event management with microservices',
-        problem: 'Event platforms suffered from monolithic architectures that couldn\'t scale during peak ticket sales and lacked real-time features.',
-        solution: 'Built a microservices architecture using Node.js, Redis for caching, WebSocket for real-time updates, and Docker for containerization.',
-        impact: 'Handled 10x more concurrent users during peak sales, reduced API response times by 75%, and achieved 99.99% availability during major events.',
-        imageUrl: '/projects/nodejs/event-management.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/nodejs-events-api',
-        projectUrl: '/projects/nodejs/nodejs-events',
-        technologies: ['Node.js', 'Express', 'Redis', 'WebSocket', 'Docker', 'PostgreSQL', 'Kubernetes'],
-        tags: [
-          { id: 'nodejs', name: 'Node.js', color: '#339933' },
-          { id: 'microservices', name: 'Microservices', color: '#ff6b6b' },
-          { id: 'scalable', name: 'Scalable', color: '#4ecdc4' },
-          { id: 'real-time', name: 'Real-time', color: '#45b7d1' },
-          { id: 'architecture', name: 'Architecture', color: '#96ceb4' },
-        ],
-        category: 'nodejs',
-        featured: true,
-        featuredOrder: 5,
-        challenges: [
-          'Implementing distributed transactions across microservices',
-          'Synchronizing real-time data across multiple service instances',
-          'Managing service discovery and load balancing',
-          'Handling partial failures and implementing circuit breakers'
-        ],
-        learnings: [
-          'Microservices design patterns and anti-patterns',
-          'Event-driven architecture with message queues',
-          'Container orchestration with Kubernetes',
-          'Distributed system monitoring and tracing'
-        ],
-        metrics: [
-          { label: 'Concurrent Users', value: '10x', improvement: 'Scalable architecture' },
-          { label: 'Response Time', value: '< 100ms', improvement: 'Redis caching' },
-          { label: 'Uptime', value: '99.99%', improvement: 'Fault-tolerant design' }
-        ]
-      },
-      {
-        id: 'nodejs-auth-system',
-        title: 'SecureAuth - Enterprise Authentication System',
-        description: 'Production-ready authentication system with multi-factor authentication, role-based access control, and audit logging.',
-        shortDescription: 'Enterprise-grade security with RBAC and MFA',
-        imageUrl: '/projects/nodejs/auth-system.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/nodejs-auth-system',
-        projectUrl: '/projects/nodejs/nodejs-auth',
-        technologies: ['Node.js', 'JWT', 'Redis', 'PostgreSQL', 'Docker', 'OAuth 2.0'],
-        tags: [
-          { id: 'security', name: 'Security', color: '#ff4444' },
-          { id: 'authentication', name: 'Authentication', color: '#00a1f1' },
-          { id: 'rbac', name: 'RBAC', color: '#7cbb00' },
-        ],
-        category: 'nodejs',
-        featured: false,
-        featuredOrder: 11
-      },
+      }
     ],
   },
   {
     id: 'python',
-    name: 'Python',
+    name: 'Python & Data Analytics',
     color: 'text-yellow-600 dark:text-yellow-400',
-    description: 'Data analysis, automation, and backend services',
+    description: 'Data analytics, physics orbital models, machine learning, and automation scripting',
     projects: [
       {
-        id: 'python-data-analytics',
-        title: 'DataInsight - Automated Business Intelligence Platform',
-        description: 'A Python-based platform for automated data analysis, visualization, and reporting with machine learning insights.',
-        shortDescription: 'Automated data analysis with ML-powered insights',
-        problem: 'Businesses struggled with manual data analysis processes that were time-consuming, error-prone, and lacked predictive capabilities.',
-        solution: 'Built an automated pipeline using Pandas, Scikit-learn, and FastAPI that processes raw data, generates insights, and creates interactive dashboards.',
-        impact: 'Reduced data analysis time from days to hours, improved decision accuracy by 40%, and identified $500K+ in cost-saving opportunities for clients.',
-        imageUrl: '/projects/python/data-analytics.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/python-data-analytics',
-        projectUrl: '/projects/python/python-data',
-        technologies: ['Python', 'Pandas', 'Scikit-learn', 'FastAPI', 'Plotly', 'Docker', 'PostgreSQL'],
+        id: 'space-debris-tracker',
+        title: 'SpaceDebrisTracker - Orbit Propagation & Collision Risk Simulator',
+        description: 'A physics-informed space debris tracking system combining Julia circular orbit simulations with Python SGP4 reference propagations to track satellite and debris paths.',
+        shortDescription: 'Orbit simulation and telemetry analysis system in Python & Julia',
+        problem: 'Tracking thousands of space debris nodes in Low Earth Orbit (LEO) requires solving complex differential orbital equations with high precision and low runtime latency.',
+        solution: 'Developed a hybrid pipeline executing core Keplerian physics and noise perturbation models in Julia, retrieving TLE data from CelesTrak, and propagating orbits using python-sgp4 with 3D visualizations.',
+        impact: 'Propagates orbits with noise bounds (sigma position/velocity variances) and generates 3D interactive plots for space catalog orbits.',
+        imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/space-debris-tracker',
+        projectUrl: '/projects/python/space-debris-tracker',
+        technologies: ['Julia', 'Python', 'SGP4', 'Plotly', 'CelesTrak API', 'Keplerian Physics'],
         tags: [
+          { id: 'julia', name: 'Julia', color: '#96ceb4' },
           { id: 'python', name: 'Python', color: '#3776ab' },
-          { id: 'data-science', name: 'Data Science', color: '#4c72b0' },
-          { id: 'analytics', name: 'Analytics', color: '#ffd43b' },
-          { id: 'automation', name: 'Automation', color: '#646464' },
+          { id: 'physics', name: 'Physics-Informed', color: '#4caf50' },
+        ],
+        category: 'python',
+        featured: true,
+        featuredOrder: 5,
+        challenges: [
+          'Resolving ECI vs ECEF coordinate conversions across Julia and Python modules',
+          'Simulating orbit propagation noise without accumulating double-precision rounding drift'
+        ],
+        learnings: [
+          'Keplerian orbital dynamics and SGP4 propagation specifications',
+          'Cross-language process communication and shell orchestration'
+        ],
+        metrics: [
+          { label: 'Orbit Solver Speed', value: '< 1ms / step', improvement: 'Fast mathematical solvers' },
+          { label: 'Reference Target', value: 'ISS SGP4', improvement: 'Validated against CelesTrak data' },
+          { label: 'Coordinate System', value: 'ECI & ECEF', improvement: 'Stable coordinate mapping' }
+        ]
+      },
+      {
+        id: 'churn-predictor',
+        title: 'ChurnPredictor - Customer Telemetry Analytics & Forecasting System',
+        description: 'A modular customer churn analytics and forecasting platform running machine learning training models (Random Forest) to evaluate retention risks and generate detailed feature importances and partial dependency plots.',
+        shortDescription: 'Customer retention prediction model with 17+ analytics visualizations',
+        problem: 'Businesses suffer from unexpected user churn without clear visibility into the predictive factors (like support calls or payment delay).',
+        solution: 'Built a modular Python pipeline that preprocesses raw datasets, trains a Random Forest classifier with 98% precision on 64k+ rows, generates 17 analytics plots, and exposes a Flask API.',
+        impact: 'Accurately predicts user churn with 98% precision and identifies primary churn indicators (usage frequency, tenure, support calls) in seconds.',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/ChurnPredictor',
+        projectUrl: '/projects/python/churn-predictor',
+        technologies: ['Python', 'Scikit-Learn', 'Pandas', 'Flask', 'React', 'Matplotlib'],
+        tags: [
           { id: 'ml', name: 'Machine Learning', color: '#f37626' },
+          { id: 'analytics', name: 'Data Visualizations', color: '#a855f7' },
+          { id: 'prediction', name: 'Predictive Analytics', color: '#00bc70' },
         ],
         category: 'python',
         featured: true,
         featuredOrder: 6,
         challenges: [
-          'Processing large datasets (>10GB) efficiently',
-          'Implementing real-time data streaming for live dashboards',
-          'Creating interpretable ML models for business users',
-          'Ensuring data pipeline reliability and error recovery'
+          'Handling high-cardinality nominal values and scaling skewed features without causing leakage',
+          'Creating Partial Dependency Plots (PDPs) for multi-feature correlations efficiently'
         ],
         learnings: [
-          'Big data processing techniques with Pandas and Dask',
-          'ML model deployment and monitoring',
-          'API design for data-intensive applications',
-          'Data visualization best practices'
+          'Machine learning feature engineering and model evaluation metrics',
+          'Exploratory Data Analysis and distribution curves generation',
+          'Model serialization (pickle) and REST API deployment'
         ],
         metrics: [
-          { label: 'Analysis Time', value: 'Hours vs Days', improvement: '90% faster' },
-          { label: 'Decision Accuracy', value: '+40%', improvement: 'ML insights' },
-          { label: 'Cost Savings', value: '$500K+', improvement: 'Identified opportunities' }
+          { label: 'Model Precision', value: '98%', improvement: 'Random Forest classifier' },
+          { label: 'Dataset Size', value: '64.3K rows', improvement: 'High volume sample testing' },
+          { label: 'Plots Generated', value: '17 visuals', improvement: 'Detailed partial dependency maps' }
         ]
       },
       {
-        id: 'python-inventory-system',
-        title: 'InventoryPro - Smart Inventory Management',
-        description: 'AI-powered inventory prediction and optimization system with real-time tracking and automated reordering.',
-        shortDescription: 'AI-driven inventory optimization',
-        imageUrl: '/projects/python/inventory-system.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/python-inventory',
-        projectUrl: '/projects/python/python-inventory',
-        technologies: ['Python', 'Flask', 'SQLite', 'TensorFlow', 'React', 'Docker'],
+        id: 'epoch-gemini-docs',
+        title: 'Gemini Documentation Generator - Multi-Agent Docstrings & README Platform',
+        description: 'A production-grade documentation automation platform powered by Google Gemini AI. Features dual specialized AI agents (Docstring Agent and README Agent) to analyze codebase structure, generate Google-style docstrings, and tree-mapped project READMEs.',
+        shortDescription: 'Multi-agent AI platform generating docstrings & README files',
+        problem: 'Writing docstrings and READMEs is tedious and often skipped, leading to poor codebase maintenance and stale documentation.',
+        solution: 'Built an automated pipeline utilizing LangChain and Google Gemini 2.5 Flash. Traverses codebases, parses AST trees, builds visual directory maps, and caches results.',
+        impact: 'Won the AI Tooling Category at the Nasiko Labs Hackathon. Traverses up to 500 files and generates visual markdown code trees instantly.',
+        imageUrl: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/Epoch_ManiSaiTeja_Nasiko',
+        projectUrl: '/projects/python/epoch-gemini-docs',
+        technologies: ['Python', 'FastAPI', 'Google Gemini 2.5 Flash', 'LangChain', 'AST Parsing', 'Jinja2'],
         tags: [
-          { id: 'inventory', name: 'Inventory', color: '#4caf50' },
-          { id: 'ai', name: 'AI', color: '#ff6b6b' },
-          { id: 'prediction', name: 'Prediction', color: '#4ecdc4' },
+          { id: 'python', name: 'Python', color: '#3776ab' },
+          { id: 'llm', name: 'Gemini AI', color: '#8e75b2' },
+          { id: 'hackathon', name: 'Winner', color: '#ffd700' },
         ],
         category: 'python',
         featured: false,
-        featuredOrder: 12
-      },
-    ],
-  },
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    color: 'text-yellow-600 dark:text-yellow-300',
-    description: 'Vanilla JS and frontend applications',
-    projects: [
-      {
-        id: 'javascript-weather-app',
-        title: 'WeatherWise - Hyperlocal Weather Forecasting',
-        description: 'A progressive web app providing hyperlocal weather forecasts with severe weather alerts and historical data analysis.',
-        shortDescription: 'PWA with hyperlocal weather predictions',
-        problem: 'Existing weather apps provided generic forecasts that were often inaccurate for specific locations and lacked severe weather preparedness features.',
-        solution: 'Built a PWA combining multiple weather APIs with machine learning for improved accuracy, implementing offline functionality and push notifications.',
-        impact: 'Achieved 95% forecast accuracy (vs. 75% industry average), reduced data usage by 80% through caching, and increased user retention by 3x through valuable alerts.',
-        imageUrl: '/projects/javascript/weather-app.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80',
-        liveUrl: 'https://weatherwise-pwa.netlify.app',
-        githubUrl: 'https://github.com/manisaiteja2007/javascript-weather-app',
-        projectUrl: '/projects/javascript/javascript-weather',
-        technologies: ['Vanilla JavaScript', 'PWA', 'Service Workers', 'IndexedDB', 'Chart.js', 'Geolocation API'],
-        tags: [
-          { id: 'javascript', name: 'JavaScript', color: '#f7df1e' },
-          { id: 'pwa', name: 'PWA', color: '#5a0fc8' },
-          { id: 'weather', name: 'Weather', color: '#4fc3f7' },
-          { id: 'offline', name: 'Offline First', color: '#ff9800' },
-          { id: 'performance', name: 'Performance', color: '#00bcd4' },
-        ],
-        category: 'javascript',
-        featured: true,
         featuredOrder: 7,
         challenges: [
-          'Implementing reliable offline functionality with sync',
-          'Optimizing weather data visualization for mobile devices',
-          'Managing API rate limits across multiple weather services',
-          'Ensuring accurate geolocation across different devices'
+          'Handling complex nested AST structures in large codebases without token limits overflow',
+          'Implementing multi-file parsing limits, safety constraints (ZIP bomb prevention), and LRU cache',
+          'Prompt engineering for consistent Google-style docstring outputs'
         ],
         learnings: [
-          'Progressive Web App architecture and best practices',
-          'Advanced JavaScript patterns for complex applications',
-          'Data visualization techniques for time-series data',
-          'Mobile-first performance optimization'
+          'Multi-agent prompts engineering and chaining with LangChain',
+          'Abstract Syntax Tree (AST) parsing in Python for syntax analysis',
+          'FastAPI integration for high-performance file uploads'
         ],
         metrics: [
-          { label: 'Forecast Accuracy', value: '95%', improvement: 'ML-enhanced' },
-          { label: 'Data Usage', value: '-80%', improvement: 'Smart caching' },
-          { label: 'User Retention', value: '3x', improvement: 'Valuable alerts' }
+          { label: 'Hackathon Result', value: 'Winner', improvement: 'AI Tooling Category' },
+          { label: 'File Capacity', value: '500 files', improvement: 'Robust local parser' },
+          { label: 'Upload Max', value: '50 MB', improvement: 'Fast async decompression' }
         ]
       },
-    ],
-  },
-  {
-    id: 'cpp',
-    name: 'C++',
-    color: 'text-purple-600 dark:text-purple-400',
-    description: 'Systems programming and performance-critical applications',
-    projects: [
       {
-        id: 'cpp-pathfinding',
-        title: 'PathFinder Pro - Algorithm Visualization Studio',
-        description: 'A desktop application visualizing pathfinding algorithms with performance metrics, custom maze generation, and algorithm comparison tools.',
-        shortDescription: 'Interactive algorithm visualization and analysis',
-        problem: 'Students and developers struggled to understand algorithm behavior and performance characteristics through static code alone.',
-        solution: 'Built an interactive C++ application with SFML graphics, implementing multiple algorithms with real-time visualization and detailed performance analytics.',
-        impact: 'Improved algorithm understanding by 70% in classroom testing, reduced debugging time for pathfinding implementations by 50%, and became a teaching tool in 3 university courses.',
-        imageUrl: '/projects/cpp/pathfinding-visualizer.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/cpp-pathfinding',
-        projectUrl: '/projects/cpp/cpp-pathfinding',
-        technologies: ['C++17', 'SFML', 'CMake', 'Google Test', 'ImGui', 'OpenGL'],
+        id: 'file-to-folder-converter',
+        title: 'Markdown ↔ Project Generator',
+        description: 'A versatile Python automation tool that performs bidirectional conversions between Markdown specifications (containing file trees and code blocks) and actual project folders.',
+        shortDescription: 'Bidirectional Markdown tree to structured project generator',
+        problem: 'Iterating between design specs (written in Markdown) and codebases is manual and prone to sync errors when folders are scaffolded.',
+        solution: 'Developed a bidirectional parser that reads ASCII trees and files to generate directory hierarchies, and vice-versa, respecting .gitignore rules.',
+        impact: 'Allows scaffolding full repositories from structured project specs in seconds with automated reports and zip archiving.',
+        imageUrl: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
+        fallbackImage: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=800&q=80',
+        githubUrl: 'https://github.com/ManiSaiTeja2007/fileTofolderConverter',
+        projectUrl: '/projects/python/file-to-folder-converter',
+        technologies: ['Python 3.12', 'markdown-it-py', 'Pathlib', 'CLI Automation'],
         tags: [
-          { id: 'cpp', name: 'C++', color: '#00599c' },
-          { id: 'algorithms', name: 'Algorithms', color: '#ff6b6b' },
-          { id: 'visualization', name: 'Visualization', color: '#4ecdc4' },
-          { id: 'performance', name: 'Performance', color: '#45b7d1' },
-          { id: 'education', name: 'Education', color: '#96ceb4' },
+          { id: 'python', name: 'Python', color: '#3776ab' },
+          { id: 'automation', name: 'Automation', color: '#4caf50' },
+          { id: 'scaffolding', name: 'Scaffolding', color: '#9c27b0' },
         ],
-        category: 'cpp',
+        category: 'python',
         featured: false,
-        featuredOrder: 13,
+        featuredOrder: 8,
         challenges: [
-          'Implementing real-time visualization without blocking algorithm execution',
-          'Creating intuitive UI for complex algorithm parameter tuning',
-          'Ensuring cross-platform compatibility (Windows/Linux/macOS)',
-          'Optimizing rendering performance for large grid sizes'
+          'Handling edge cases with unassigned code blocks and recovery hints',
+          'Escaping and parsing nested markdown code fences (fences inside fences)',
+          'Ensuring exact round-trip folder reproducibility'
         ],
         learnings: [
-          'Modern C++ features and best practices',
-          'Real-time graphics programming techniques',
-          'Cross-platform application development',
-          'Algorithm optimization and profiling'
+          'Markdown tokenizer trees parsing and AST structures',
+          'Standard library Pathlib manipulation and CLI option flags',
+          'File permissions and cross-platform path conversions'
         ],
         metrics: [
-          { label: 'Understanding Improvement', value: '70%', improvement: 'Visual learning' },
-          { label: 'Debugging Time', value: '-50%', improvement: 'Visual debugging' },
-          { label: 'Grid Size', value: '1000x1000', improvement: 'Optimized rendering' }
+          { label: 'Scaffold Time', value: '< 50ms', improvement: 'Near instantaneous setup' },
+          { label: 'Validation', value: 'Strict Mode', improvement: 'Fails early on errors' },
+          { label: 'Supported Python', value: '3.12+', improvement: 'Modern syntax features' }
         ]
-      },
-    ],
-  },
-  {
-    id: 'fullstack',
-    name: 'Full Stack',
-    color: 'text-indigo-600 dark:text-indigo-400',
-    description: 'End-to-end applications with modern stacks',
-    projects: [
-      {
-        id: 'fullstack-health-tracker',
-        title: 'HealthSync - Integrated Health Monitoring Platform',
-        description: 'A full-stack health tracking platform connecting IoT health devices with a React frontend, Node.js backend, and predictive analytics.',
-        shortDescription: 'IoT health monitoring with predictive analytics',
-        problem: 'Healthcare providers lacked integrated systems connecting patient devices with analytics and medical records.',
-        solution: 'Built a complete system with React frontend, Node.js microservices, PostgreSQL database, and machine learning for health predictions.',
-        impact: 'Enabled early detection of health issues in 85% of pilot cases, reduced manual data entry by 90%, and improved patient engagement by 60%.',
-        imageUrl: '/projects/fullstack/health-tracker.jpg',
-        fallbackImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80',
-        githubUrl: 'https://github.com/manisaiteja2007/fullstack-health-tracker',
-        projectUrl: '/projects/fullstack/health-tracker',
-        technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'TensorFlow.js', 'WebSocket', 'OAuth 2.0'],
-        tags: [
-          { id: 'fullstack', name: 'Full Stack', color: '#6f42c1' },
-          { id: 'healthcare', name: 'Healthcare', color: '#e83e8c' },
-          { id: 'iot', name: 'IoT', color: '#20c997' },
-          { id: 'predictive-analytics', name: 'Predictive Analytics', color: '#fd7e14' },
-        ],
-        category: 'fullstack',
-        featured: false,
-        featuredOrder: 14
-      },
-    ],
-  },
+      }
+    ]
+  }
 ];
 
 // Helper functions
@@ -587,22 +391,22 @@ export const getTieredProjects = () => {
   return {
     // Tier 1: Complex Systems (show architecture thinking)
     complex: allProjects.filter((p: Project) =>
-      ['aws-serverless-api', 'nodejs-events-api', 'arduino-smart-home'].includes(p.id)
+      ['aeroproxy', 'nutriguard'].includes(p.id)
     ),
 
     // Tier 2: UI/UX Focus (show design sensibility)
     ui: allProjects.filter((p: Project) =>
-      ['react-social-dashboard', 'angular-task-management', 'javascript-weather-app'].includes(p.id)
+      ['manisaitejabejjala-portfolio', 'diffchecker'].includes(p.id)
     ),
 
     // Tier 3: Hardware/IoT (show unique blend)
     hardware: allProjects.filter((p: Project) =>
-      ['arduino-smart-home', 'arduino-weather-station'].includes(p.id)
+      ['nutriguard'].includes(p.id)
     ),
 
     // Tier 4: Algorithms & Performance (show optimization)
     algorithms: allProjects.filter((p: Project) =>
-      ['cpp-pathfinding', 'python-data-analytics'].includes(p.id)
+      ['aeroproxy', 'space-debris-tracker', 'churn-predictor', 'epoch-gemini-docs', 'file-to-folder-converter'].includes(p.id)
     ),
   };
 };
@@ -617,7 +421,7 @@ export const getPortfolioMetrics = () => {
     totalTechnologies: new Set(projects.flatMap(p => p.technologies)).size,
     categories: projectCategories.length,
     estimatedImpact: projects.reduce((sum: number, p: Project) => {
-      const impact = p.metrics?.[0]?.improvement || '';
+      const impact = p.metrics?.[1]?.improvement || '';
       const match = impact.match(/(\d+)%/);
       return sum + (match ? parseInt(match[1]) : 0);
     }, 0),

@@ -1,19 +1,16 @@
 // src/components/sections/Stats/Stats.tsx
-'use client';
-
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import { 
-  Github, 
   Star, 
   Code, 
   Users,
   GitFork, 
   Calendar, 
   Award, 
-  Zap, 
+  Zap,
   ExternalLink 
-} from 'lucide-react'; // Removed: Clock, TrendingUp, BookOpen
-import { GITHUB_CONFIG } from '@/utils/constants';
+} from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 import { useEffect, useReducer, useCallback, memo } from 'react';
 import { statsService } from '@/services/statsService';
 
@@ -81,84 +78,104 @@ function statsReducer(state: StatsState, action: StatsAction): StatsState {
   }
 }
 
-// Stat Card Component
+// Digital Stat Card (styled as a hardware monitor)
 interface StatCardProps {
   icon: React.ReactNode;
   label: string;
   value: string | number;
   subValue?: string;
-  color: string;
+  glowColor: string; // e.g. "bg-emerald-500", "bg-indigo-500"
   loading: boolean;
 }
 
-const StatCard = memo(({ icon, label, value, subValue, color, loading }: StatCardProps) => (
+const StatCard = memo(({ icon, label, value, subValue, glowColor, loading }: StatCardProps) => (
   <m.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 15 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
+    className="relative bg-slate-900/90 dark:bg-slate-950/60 rounded-2xl p-6 border border-slate-800 shadow-lg hover:border-slate-700 hover:shadow-xl transition-all duration-300 group overflow-hidden"
   >
-    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center mb-4`}>
-      <div className="text-white">
+    {/* Pulsing Active LED Indicator */}
+    <div className="absolute top-4 right-4 flex items-center gap-1.5">
+      <span className={`w-2.5 h-2.5 rounded-full ${glowColor} opacity-75 animate-pulse`} />
+      <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">LIVE</span>
+    </div>
+
+    <div className="flex items-center gap-3.5 mb-4">
+      <div className="p-3 bg-slate-800/80 rounded-xl text-slate-300 group-hover:text-white transition-colors">
         {icon}
       </div>
+      <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">
+        {label}
+      </h3>
     </div>
     
     {loading ? (
-      <>
-        <div className="h-8 w-20 bg-slate-200 dark:bg-slate-700 rounded animate-pulse mb-2" />
-        <div className="h-4 w-32 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
-      </>
+      <div className="space-y-2">
+        <div className="h-9 w-24 bg-slate-800 rounded animate-pulse" />
+        <div className="h-4 w-32 bg-slate-800 rounded animate-pulse" />
+      </div>
     ) : (
-      <>
-        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">
+      <div className="space-y-1">
+        <div className="text-3xl font-poppins font-black text-slate-50 dark:text-white tracking-tight">
           {value}
         </div>
-        <div className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">
-          {label}
-        </div>
         {subValue && (
-          <div className="text-xs text-primary-600 dark:text-primary-400">
+          <div className="text-xs font-mono text-slate-500">
             {subValue}
           </div>
         )}
-      </>
+      </div>
     )}
   </m.div>
 ));
 
 StatCard.displayName = 'StatCard';
 
-// Language Progress Bar Component
+// Cockpit Progress Bar (styled as a LED bar graph)
 interface LanguageBarProps {
   language: Language;
+  index: number;
 }
 
-const LanguageBar = memo(({ language }: LanguageBarProps) => (
-  <div className="space-y-1">
-    <div className="flex justify-between text-sm">
-      <span className="font-medium text-slate-700 dark:text-slate-300">
-        {language.name}
-      </span>
-      <span className="text-slate-600 dark:text-slate-400">
-        {language.percentage}%
-      </span>
+const LanguageBar = memo(({ language, index }: LanguageBarProps) => {
+  // Cycle gradients based on index
+  const barColors = [
+    'from-indigo-500 to-blue-500 shadow-glow-primary/20',
+    'from-teal-500 to-emerald-500 shadow-glow-secondary/20',
+    'from-purple-500 to-pink-500 shadow-glow-accent/20',
+    'from-amber-500 to-orange-500 shadow-glow-accent/10',
+    'from-blue-500 to-cyan-500 shadow-glow-primary/10'
+  ];
+  
+  const barGradient = barColors[index % barColors.length];
+
+  return (
+    <div className="space-y-2 p-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
+      <div className="flex justify-between items-center text-xs font-mono">
+        <span className="font-bold text-slate-300">
+          [{language.name.toUpperCase()}]
+        </span>
+        <span className="text-slate-400 font-semibold">
+          {language.percentage}%
+        </span>
+      </div>
+      <div className="w-full h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-900 p-[1px]">
+        <m.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${language.percentage}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
+          className={`h-full bg-gradient-to-r ${barGradient} rounded-full`}
+        />
+      </div>
     </div>
-    <div className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-      <m.div
-        initial={{ width: 0 }}
-        whileInView={{ width: `${language.percentage}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"
-      />
-    </div>
-  </div>
-));
+  );
+});
 
 LanguageBar.displayName = 'LanguageBar';
 
-// Platform Link Component
+// Platform Link
 interface PlatformLinkProps {
   name: string;
   value: string;
@@ -172,23 +189,22 @@ const PlatformLink = memo(({ name, value, icon, color, url }: PlatformLinkProps)
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    whileHover={{ y: -2 }}
-    className={`flex items-center gap-3 px-4 py-3 rounded-lg ${color} transition-all duration-300 hover:shadow-md`}
+    whileHover={{ y: -3 }}
+    className={`flex items-center gap-3.5 px-6 py-4 rounded-2xl ${color} transition-all duration-300 border border-transparent shadow-sm hover:shadow-md font-mono text-sm`}
   >
     <div className="text-current">
       {icon}
     </div>
     <div>
-      <div className="font-semibold text-sm">{name}</div>
-      <div className="text-xs opacity-90">{value}</div>
+      <div className="font-bold text-slate-900 dark:text-white">{name}</div>
+      <div className="text-xs opacity-85 mt-0.5">{value}</div>
     </div>
-    <ExternalLink size={14} className="ml-auto opacity-60" />
+    <ExternalLink size={14} className="ml-auto opacity-70" />
   </m.a>
 ));
 
 PlatformLink.displayName = 'PlatformLink';
 
-// Main Component
 export const Stats = () => {
   const [state, dispatch] = useReducer(statsReducer, initialState);
 
@@ -222,51 +238,51 @@ export const Stats = () => {
   const mainStats = [
     {
       id: 'repos',
-      icon: <Github size={20} />,
-      label: 'Public Repositories',
+      icon: <FaGithub size={18} />,
+      label: 'Repositories',
       value: state.stats?.publicRepos || 25,
-      subValue: 'Active projects',
-      color: 'from-slate-600 to-slate-700'
+      subValue: 'Indexed public repos',
+      glowColor: 'bg-indigo-500'
     },
     {
       id: 'stars',
-      icon: <Star size={20} />,
-      label: 'Total Stars Earned',
+      icon: <Star size={18} />,
+      label: 'GitHub Stars',
       value: state.stats?.totalStars || 20,
-      subValue: 'Across all repos',
-      color: 'from-yellow-500 to-yellow-600'
+      subValue: 'Across public repos',
+      glowColor: 'bg-amber-500'
     },
     {
       id: 'followers',
-      icon: <Users size={20} />,
-      label: 'GitHub Followers',
+      icon: <Users size={18} />,
+      label: 'Followers',
       value: state.stats?.followers || 10,
-      subValue: 'Developer community',
-      color: 'from-blue-500 to-blue-600'
+      subValue: 'Developer network',
+      glowColor: 'bg-blue-500'
     },
     {
       id: 'streak',
-      icon: <Zap size={20} />,
-      label: 'Current Streak',
-      value: state.streak?.currentStreak ? `${state.streak.currentStreak} days` : 'Active',
-      subValue: state.streak?.longestStreak ? `Longest: ${state.streak.longestStreak} days` : 'Contributing daily',
-      color: 'from-red-500 to-red-600'
+      icon: <Zap size={18} />,
+      label: 'Active Streak',
+      value: state.streak?.currentStreak ? `${state.streak.currentStreak} Days` : 'Active',
+      subValue: state.streak?.longestStreak ? `Max record: ${state.streak.longestStreak} days` : 'Daily updates',
+      glowColor: 'bg-red-500'
     },
     {
       id: 'contributions',
-      icon: <Calendar size={20} />,
-      label: 'Contributions (Year)',
+      icon: <Calendar size={18} />,
+      label: 'Contributions',
       value: state.streak?.totalContributionsThisYear || 150,
-      subValue: 'This year',
-      color: 'from-green-500 to-green-600'
+      subValue: 'Aggregated commits',
+      glowColor: 'bg-emerald-500'
     },
     {
-      id: 'forks',
-      icon: <GitFork size={20} />,
-      label: 'Technologies',
-      value: state.languages.length || 15,
-      subValue: 'Programming languages',
-      color: 'from-purple-500 to-purple-600'
+      id: 'languages_count',
+      icon: <GitFork size={18} />,
+      label: 'Tech Stack Count',
+      value: state.languages.length || 5,
+      subValue: 'Primary technologies',
+      glowColor: 'bg-purple-500'
     }
   ];
 
@@ -276,7 +292,7 @@ export const Stats = () => {
       name: 'LeetCode',
       value: '150+ problems solved',
       icon: <Code size={18} />,
-      color: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-900/50',
+      color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20 border-orange-500/20',
       url: 'https://leetcode.com/u/manisaiteja2007/'
     },
     {
@@ -284,48 +300,45 @@ export const Stats = () => {
       name: 'CodeChef',
       value: '25+ contests',
       icon: <Award size={18} />,
-      color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/50',
+      color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border-rose-500/20',
       url: 'https://www.codechef.com/users/manisaiteja2007'
     }
   ];
 
   return (
     <LazyMotion features={domAnimation}>
-      <section id="stats" className="py-20 bg-white dark:bg-slate-900">
+      <section id="stats" className="py-24 bg-white dark:bg-slate-900/60 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           {/* Header */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-              Live GitHub Statistics
+              GitHub Live Console
             </span>
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Development Metrics
+            <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white">
+              System Telemetry
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Real-time data from my GitHub activity and coding platforms
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4 font-sans">
+              Real-time hardware & software activity dashboard logs from my public endpoints.
             </p>
           </m.div>
 
-          {/* Error State */}
           {state.error && (
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mb-8 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-center"
+              className="mb-8 p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-center text-amber-600 dark:text-amber-400 text-sm font-mono"
             >
-              <p className="text-red-600 dark:text-red-400 mb-2">{state.error}</p>
-              <p className="text-sm text-slate-600 dark:text-slate-400">
-                Showing cached or estimated data
-              </p>
+              ⚠️ {state.error}. Displaying system default profile cache.
             </m.div>
           )}
 
-          {/* Main Stats Grid */}
+          {/* Cockpit Metrics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {mainStats.map((stat) => (
               <StatCard
@@ -334,65 +347,53 @@ export const Stats = () => {
                 label={stat.label}
                 value={stat.value}
                 subValue={stat.subValue}
-                color={stat.color}
+                glowColor={stat.glowColor}
                 loading={state.loading}
               />
             ))}
           </div>
 
-          {/* GitHub Profile Link */}
-          <m.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <a
-              href={`https://github.com/${GITHUB_CONFIG.username}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 dark:bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-800 dark:hover:bg-slate-700 transition-colors duration-300"
-            >
-              <Github size={20} />
-              <span>View GitHub Profile</span>
-              <ExternalLink size={16} />
-            </a>
-          </m.div>
-
-          {/* Top Languages */}
+          {/* Languages Dashboard Display */}
           {state.languages.length > 0 && (
             <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-12 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700"
+              className="mb-12 p-8 bg-slate-900/90 dark:bg-slate-950/60 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden"
             >
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                <Code size={20} className="text-primary-500" />
-                Top Languages
-              </h3>
-              <div className="space-y-4">
-                {state.languages.slice(0, 5).map((lang) => (
-                  <LanguageBar key={lang.name} language={lang} />
+              {/* Header decoration */}
+              <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
+                <Code size={18} className="text-primary-brand" />
+                <h3 className="text-sm font-mono font-bold text-slate-200 uppercase tracking-widest">
+                  LANGUAGE_BYTES_INDEX
+                </h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {state.languages.slice(0, 4).map((lang, index) => (
+                  <LanguageBar key={lang.name} language={lang} index={index} />
                 ))}
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-4 text-right">
-                Updated: {new Date(state.stats?.updatedAt || '').toLocaleDateString()}
-              </p>
+
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+                <span>TELEMETRY_REFRESH: SUCCESS</span>
+                <span>SYNC_TIME: {new Date(state.stats?.updatedAt || '').toLocaleTimeString()}</span>
+              </div>
             </m.div>
           )}
 
-          {/* Coding Platforms */}
+          {/* Coding Practice Platforms */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="pt-8 border-t border-slate-200 dark:border-slate-800"
+            className="pt-12 border-t border-slate-200 dark:border-slate-800/80"
           >
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 text-center">
-              Coding Practice Platforms
+            <h3 className="text-xl font-poppins font-bold text-slate-900 dark:text-white mb-8 text-center">
+              Algorithmic Core Exercises
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
               {platforms.map((platform) => (
                 <PlatformLink
                   key={platform.id}
@@ -406,14 +407,6 @@ export const Stats = () => {
             </div>
           </m.div>
 
-          {/* Cache Note */}
-          {state.stats?._note && (
-            <div className="mt-6 text-center">
-              <p className="text-xs text-amber-600 dark:text-amber-400">
-                ⚠️ {state.stats._note}
-              </p>
-            </div>
-          )}
         </div>
       </section>
     </LazyMotion>
