@@ -41,7 +41,7 @@ function AppContent() {
     <Router>
       <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
         <Header />
-        <main className="pt-24">
+        <main className="">
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <Routes>

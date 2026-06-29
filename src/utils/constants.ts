@@ -130,6 +130,14 @@ export const VALUE_PROPS_BENEFITS = [
   'System-Level Thinking',
   'Future-Proof Architecture',
   'Seamless Integration',
+  'Hardware-Informed Design',
+  'Clean TypeScript Code',
+  'Edge AI Awareness',
+  'Low-Latency First',
+  'ECE-Backed Perspective',
+  'Open-Source Contributor',
+  'Cross-Platform Thinking',
+  'Data-Driven Development',
 ];
 
 // Fun Facts Configuration

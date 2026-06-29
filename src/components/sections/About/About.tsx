@@ -60,13 +60,15 @@ export const About = () => {
             
             <div className="space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
               <p>
-                I'm <strong>{PERSONAL_INFO.name}</strong>, a B.Tech student majoring in <strong>{ACADEMIC_INFO.degree}</strong> at <strong>{PERSONAL_INFO.college}</strong>.
+                I'm <strong className="text-slate-900 dark:text-white">{PERSONAL_INFO.name}</strong>, a B.Tech student majoring in{' '}
+                <strong className="text-slate-900 dark:text-white">{ACADEMIC_INFO.degree}</strong> at{' '}
+                <strong className="text-primary-600 dark:text-primary-400">{PERSONAL_INFO.college}</strong>.
               </p>
               <p>
-                My ECE engineering background provides a unique **systems perspective**. I understand that every variable tracked in telemetry, and every packet routed through a gateway, is bound by physical registers, clock cycles, and logic gates on actual microchips.
+                My ECE engineering background provides a unique <strong className="text-slate-900 dark:text-white">systems perspective</strong>. I understand that every variable tracked in telemetry, and every packet routed through a gateway, is bound by physical registers, clock cycles, and logic gates on actual microchips.
               </p>
               <p>
-                This awareness guides how I perform data analysis and systems design—ensuring pipelines are mathematically rigorous, lightweight, and optimized for speed and footprint.
+                This awareness guides how I perform data analysis and systems design — ensuring pipelines are mathematically rigorous, lightweight, and optimized for speed and footprint.
               </p>
             </div>
           </div>
@@ -75,19 +77,22 @@ export const About = () => {
           <div className="lg:col-span-7 bg-slate-50/50 dark:bg-slate-950/30 border border-slate-200/60 dark:border-slate-800/80 rounded-3xl p-6 md:p-8 shadow-xl backdrop-blur-md min-h-[420px] flex flex-col">
             
             {/* Tab selection buttons */}
-            <div className="flex border-b border-slate-200 dark:border-slate-800 pb-4 mb-6 gap-2 overflow-x-auto">
+            <div className="flex border-b border-slate-200 dark:border-slate-800 mb-6 gap-1 overflow-x-auto">
               {tabsConfig.map((tab) => (
                 <button
-                   key={tab.id}
-                   onClick={() => setActiveTab(tab.id)}
-                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-sm font-semibold transition-all duration-300 ${
-                     activeTab === tab.id
-                       ? 'bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white border-b-2 border-primary-brand shadow-sm'
-                       : 'text-slate-500 dark:text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'
-                   }`}
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative flex items-center gap-2 px-4 py-3 font-mono text-sm font-semibold transition-all duration-200 rounded-t-lg whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? 'text-primary-600 dark:text-primary-400 bg-white dark:bg-slate-900'
+                      : 'text-slate-500 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900/40'
+                  }`}
                 >
                   {tab.icon}
                   <span>{tab.label}</span>
+                  {activeTab === tab.id && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" />
+                  )}
                 </button>
               ))}
             </div>

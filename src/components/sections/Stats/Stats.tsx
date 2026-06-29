@@ -405,6 +405,21 @@ export const Stats = () => {
                 />
               ))}
             </div>
+
+            {/* GitHub Profile CTA */}
+            <div className="mt-10 text-center">
+              <m.a
+                href="https://github.com/manisaiteja2007"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -2 }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white rounded-2xl font-semibold shadow-lg transition-all duration-300 border border-slate-700/60"
+              >
+                <FaGithub size={20} />
+                View Full GitHub Profile
+                <ExternalLink size={14} className="opacity-60" />
+              </m.a>
+            </div>
           </m.div>
 
         </div>

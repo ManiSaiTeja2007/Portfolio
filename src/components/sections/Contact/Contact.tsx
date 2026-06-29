@@ -223,10 +223,11 @@ export const Contact = () => {
                 Why Collaborate?
               </h4>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                You get a developer who understands both **embedded hardware
-                constraints** and **scalable frontend architecture**. Let's
-                construct high-fidelity interfaces backed by clean, efficient
-                TypeScript code.
+                You get a developer who understands both{' '}
+                <strong className="text-slate-800 dark:text-slate-200">embedded hardware constraints</strong>{' '}
+                and{' '}
+                <strong className="text-slate-800 dark:text-slate-200">scalable frontend architecture</strong>.
+                Let's construct high-fidelity interfaces backed by clean, efficient TypeScript code.
               </p>
             </motion.div>
           </div>

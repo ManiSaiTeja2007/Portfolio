@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const activeSection = useScrollSpy(SECTION_IDS);
@@ -25,6 +26,25 @@ export const Header = () => {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setIsScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
   const navLinks = [
     { href: '#about', label: 'About' },
@@ -61,7 +81,11 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl bg-white/75 dark:bg-slate-950/45 backdrop-blur-xl border border-black/5 dark:border-white/5 rounded-2xl z-50 transition-all duration-300 shadow-lg dark:shadow-glow/5">
+    <header className={`fixed left-1/2 -translate-x-1/2 w-[92%] max-w-7xl bg-white/75 dark:bg-slate-950/45 backdrop-blur-xl border border-black/5 dark:border-white/5 rounded-2xl z-50 transition-all duration-500 shadow-lg dark:shadow-glow/5 ${
+      isScrolled 
+        ? 'top-4 opacity-100 translate-y-0 pointer-events-auto' 
+        : '-top-20 opacity-0 -translate-y-4 pointer-events-none'
+    }`}>
       <div className="px-6 py-3.5 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-3">

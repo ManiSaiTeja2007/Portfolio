@@ -1,196 +1,187 @@
 // src/components/sections/Projects/Projects.tsx
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectCard } from '../../common/Cards/ProjectCard';
 import { featuredProjects, getAllProjects, getTieredProjects } from '@/utils/projectsData';
 import { Link } from 'react-router-dom';
-import { Filter, ChevronDown, Sparkles } from 'lucide-react';
+import { ChevronDown, Sparkles, Layers, Cpu, Globe, BarChart2, ChevronUp } from 'lucide-react';
 
 type ProjectTier = 'all' | 'complex' | 'ui' | 'hardware' | 'algorithms';
+
+const TIER_CONFIG: { id: ProjectTier; label: string; icon: React.ReactNode; color: string }[] = [
+  { id: 'all',        label: 'All Projects',     icon: <Layers size={14} />,    color: 'text-slate-600' },
+  { id: 'complex',    label: 'Complex Systems',  icon: <Cpu size={14} />,       color: 'text-blue-500' },
+  { id: 'ui',         label: 'Web & UI',         icon: <Globe size={14} />,     color: 'text-cyan-500' },
+  { id: 'hardware',   label: 'Mobile & Edge AI', icon: <Cpu size={14} />,       color: 'text-emerald-500' },
+  { id: 'algorithms', label: 'Data & Analytics', icon: <BarChart2 size={14} />, color: 'text-purple-500' },
+];
 
 export const Projects = () => {
   const [showAllFeatured, setShowAllFeatured] = useState(false);
   const [activeTier, setActiveTier] = useState<ProjectTier>('all');
 
-  // Tier projects based on centralized filters
   const projectTiers = getTieredProjects();
 
-  const displayedProjects = showAllFeatured 
-    ? featuredProjects 
-    : featuredProjects.slice(0, 4);
-
-  const getTierProjects = () => {
-    if (activeTier === 'all') return displayedProjects;
-    return projectTiers[activeTier] || [];
+  const getDisplayProjects = () => {
+    if (activeTier !== 'all') return projectTiers[activeTier] || [];
+    return showAllFeatured ? featuredProjects : featuredProjects.slice(0, 4);
   };
 
+  const displayedProjects = getDisplayProjects();
+  const totalCount = getAllProjects().length;
+
   return (
-    <section id="projects" className="section-container bg-slate-50 dark:bg-slate-900/30">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto"
-      >
-        {/* Section Header with Progress Indicator */}
-        <div className="text-center mb-12">
+    <section id="projects" className="py-24 bg-slate-50 dark:bg-slate-900/30 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary-brand/10 text-primary-brand rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full mb-5"
           >
-            <Sparkles size={16} />
+            <Sparkles size={15} />
             <span className="text-sm font-medium">Strategic Project Portfolio</span>
           </motion.div>
 
-          <h2 className="section-title">
+          <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
             Building Solutions That Matter
           </h2>
-
-          <p className="section-description max-w-3xl">
-            Each project represents a unique challenge and learning opportunity. 
-            They're organized to showcase different aspects of my technical and problem-solving abilities.
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Each project showcases a unique technical challenge — organized to demonstrate depth across systems, UI, edge AI, and data analytics.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Project Tier Filter */}
+        {/* Filter Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-12"
+          className="flex flex-wrap justify-center gap-2.5 mb-12"
         >
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Filter className="text-slate-500" size={20} />
-            <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300">
-              Filter by Focus Area:
-            </h3>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              { id: 'all' as ProjectTier, label: 'All Projects', count: featuredProjects.length },
-              { id: 'complex' as ProjectTier, label: 'Complex Systems', count: projectTiers.complex.length },
-              { id: 'ui' as ProjectTier, label: 'Web Tooling & UI', count: projectTiers.ui.length },
-              { id: 'hardware' as ProjectTier, label: 'Mobile & Edge AI', count: projectTiers.hardware.length },
-              { id: 'algorithms' as ProjectTier, label: 'Data & Analytics', count: projectTiers.algorithms.length },
-            ].map((tier) => (
+          {TIER_CONFIG.map((tier) => {
+            const count = tier.id === 'all' ? featuredProjects.length : (projectTiers[tier.id]?.length || 0);
+            const isActive = activeTier === tier.id;
+            return (
               <button
                 key={tier.id}
-                onClick={() => setActiveTier(tier.id)}
-                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
-                  activeTier === tier.id
-                    ? 'bg-primary-brand text-white shadow-lg'
-                    : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+                onClick={() => {
+                  setActiveTier(tier.id);
+                  if (tier.id !== 'all') setShowAllFeatured(false);
+                }}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/25 scale-105'
+                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
+                <span className={isActive ? 'text-white/80' : tier.color}>{tier.icon}</span>
                 {tier.label}
-                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                  activeTier === tier.id
-                    ? 'bg-white/20'
-                    : 'bg-slate-200 dark:bg-slate-700'
-                }`}>
-                  {tier.count}
+                <span className={`text-xs px-2 py-0.5 rounded-full font-mono ${isActive ? 'bg-white/20' : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
+                  {count}
                 </span>
               </button>
-            ))}
-          </div>
+            );
+          })}
         </motion.div>
 
-        {/* Projects Grid with Staggered Animation */}
-        <div className="mb-12">
-          {getTierProjects().length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-12"
-            >
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 mb-2">
-                No projects in this category
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Try selecting a different filter
-              </p>
-            </motion.div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-              {getTierProjects().map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <ProjectCard 
-                    project={project}
-                    showDescription={true}
-                    className="h-full"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* Projects Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTier + String(showAllFeatured)}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25 }}
+            className="mb-10"
+          >
+            {displayedProjects.length === 0 ? (
+              <div className="text-center py-16">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-xl font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                  No projects in this category yet
+                </h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                  More coming soon — check back or view all projects
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {displayedProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.08, duration: 0.5 }}
+                    whileHover={{ y: -4 }}
+                  >
+                    <ProjectCard
+                      project={project}
+                      showDescription={true}
+                      className="h-full"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
-        {/* CTAs with Hierarchy */}
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          {featuredProjects.length > 4 && (
+          {activeTier === 'all' && featuredProjects.length > 4 && (
             <button
               onClick={() => setShowAllFeatured(!showAllFeatured)}
-              className="btn-primary inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-lg shadow-primary-500/20 transition-all duration-300"
             >
               {showAllFeatured ? (
-                <>
-                  <ChevronDown className="rotate-180" size={20} />
-                  Show Less
-                </>
+                <><ChevronUp size={18} /> Show Less</>
               ) : (
-                <>
-                  <ChevronDown size={20} />
-                  Show More Projects
-                </>
+                <><ChevronDown size={18} /> Show More</>
               )}
             </button>
           )}
 
           <Link
             to="/projects"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary-brand/30 text-primary-brand rounded-xl hover:border-primary-brand hover:bg-primary-brand/5 transition-all duration-300 font-semibold"
+            className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-primary-500/30 text-primary-600 dark:text-primary-400 rounded-xl hover:border-primary-500 hover:bg-primary-500/5 transition-all duration-300 font-semibold"
           >
             View Full Portfolio
-            <span className="text-sm px-2 py-1 bg-primary-brand/10 rounded">
-              {getAllProjects().length}+ projects
+            <span className="text-xs px-2 py-0.5 bg-primary-500/10 rounded-lg font-mono">
+              {totalCount}+ projects
             </span>
           </Link>
         </motion.div>
 
-        {/* Progress Indicator */}
+        {/* Status footer strip */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700"
+          className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 font-mono"
         >
-          <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
-            <span>Projects showcasing technical depth</span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Available for discussion
-            </span>
-          </div>
+          <span>Projects demonstrating technical breadth and systems thinking</span>
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            Available for project discussions
+          </span>
         </motion.div>
-      </motion.div>
+
+      </div>
     </section>
   );
 };

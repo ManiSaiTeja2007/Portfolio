@@ -1,6 +1,12 @@
 /* src/styles/animations.css */
 /* Strategic Animation Classes */
 
+/* Marquee / ticker animation for scrolling content strips */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
 /* Hero Section Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }

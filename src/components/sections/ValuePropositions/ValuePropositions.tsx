@@ -103,22 +103,24 @@ export const ValuePropositions = () => {
           ))}
         </div>
 
-        {/* Benefits Display - Dynamic imports */}
+        {/* Scrolling Benefits Ticker */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center mt-20"
+          className="mt-20 overflow-hidden"
         >
-          <div className="inline-flex flex-col items-center justify-center p-6 bg-slate-50/80 dark:bg-slate-900/30 rounded-3xl border border-slate-200/50 dark:border-slate-800/60 max-w-3xl mx-auto shadow-sm">
-            <h4 className="font-mono text-xs uppercase tracking-widest text-slate-400 mb-4">SYSTEM_BENEFITS_CATALOG</h4>
-            <div className="flex flex-wrap justify-center gap-3">
-              {VALUE_PROPS_BENEFITS.map((benefit, idx) => (
-                <span 
-                  key={idx} 
-                  className="px-4 py-2 bg-white dark:bg-slate-900/60 border border-slate-150 dark:border-slate-800/60 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-350 shadow-sm"
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-50 dark:from-slate-950/40 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-50 dark:from-slate-950/40 to-transparent z-10 pointer-events-none" />
+            <div className="flex gap-4 animate-[marquee_25s_linear_infinite] hover:pause-animation w-max">
+              {[...VALUE_PROPS_BENEFITS, ...VALUE_PROPS_BENEFITS, ...VALUE_PROPS_BENEFITS].map((benefit, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/60 rounded-full text-sm font-semibold text-slate-700 dark:text-slate-300 shadow-sm whitespace-nowrap flex-shrink-0"
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex-shrink-0" />
                   {benefit}
                 </span>
               ))}
