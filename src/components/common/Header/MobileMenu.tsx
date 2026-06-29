@@ -1,5 +1,4 @@
 // src/components/common/Header/MobileMenu.tsx
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface MobileMenuLink {
@@ -17,22 +16,6 @@ interface MobileMenuProps {
 export const MobileMenu = ({ isOpen, links, activeSection, onClose }: MobileMenuProps) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const menuVariants = {
-    closed: {
-      height: 0,
-      opacity: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    open: {
-      height: 'auto',
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -60,36 +43,30 @@ export const MobileMenu = ({ isOpen, links, activeSection, onClose }: MobileMenu
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial="closed"
-          animate="open"
-          exit="closed"
-          variants={menuVariants}
-          className="md:hidden bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 shadow-inner overflow-hidden"
-        >
-          <div className="px-4 py-2">
-            {links.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`block px-4 py-3 rounded-lg transition-colors duration-200 ${
-                    isActive
-                      ? 'bg-primary-brand/10 text-primary-brand font-medium'
-                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      className={`md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out ${
+        isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden pointer-events-none'
+      }`}
+    >
+      <div className="px-6 py-4 space-y-1">
+        {links.map((link) => {
+          const isActive = activeSection === link.href.substring(1);
+          return (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
+              className={`block px-4 py-3 rounded-xl transition-all duration-200 font-mono text-sm ${
+                isActive
+                  ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400 font-bold'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </div>
+    </div>
   );
 };

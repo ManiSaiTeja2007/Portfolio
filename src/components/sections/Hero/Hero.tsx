@@ -222,10 +222,10 @@ export const Hero = () => {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="lg:col-span-6"
           >
-            <div className="relative bg-slate-950 border border-slate-800/80 rounded-3xl overflow-hidden shadow-2xl shadow-slate-950/50">
+            <div className="relative bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-3xl overflow-hidden shadow-xl dark:shadow-2xl shadow-slate-200 dark:shadow-slate-950/50">
               
               {/* ── Terminal / Dashboard Header bar ── */}
-              <div className="flex items-center justify-between px-5 py-3.5 bg-slate-900/80 border-b border-slate-800/80 backdrop-blur-sm">
+              <div className="flex items-center justify-between px-5 py-3.5 bg-slate-100 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800/80 backdrop-blur-sm">
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-red-500/90" />
@@ -233,7 +233,7 @@ export const Hero = () => {
                     <span className="w-3 h-3 rounded-full bg-green-500/90" />
                   </div>
                   <span className="text-xs font-mono text-slate-500 ml-2 flex items-center gap-1.5">
-                    <Terminal size={11} className="text-primary-400" />
+                    <Terminal size={11} className="text-primary-600 dark:text-primary-400" />
                     SYS_LOGIC_SIM v2.4 — GATE_EMULATOR
                   </span>
                 </div>
@@ -251,21 +251,21 @@ export const Hero = () => {
               <div className="p-5 space-y-4">
 
                 {/* ── Top mini-console ── */}
-                <div className="bg-slate-900/60 rounded-2xl p-4 border border-slate-800/60 font-mono text-[11px] space-y-1.5">
-                  <p className="text-slate-600">$ system_init --module=gate_emulator</p>
-                  <p className="text-emerald-400">✔ ECE_MODULE loaded successfully</p>
-                  <p className="text-slate-500">
-                    <span className="text-primary-400">INPUTS →</span>{" "}
-                    A=<span className={gateA ? "text-emerald-400" : "text-slate-600"}>{gateA}</span>,{" "}
-                    B=<span className={gateB ? "text-emerald-400" : "text-slate-600"}>{gateB}</span>
+                <div className="bg-slate-50 dark:bg-slate-900/60 rounded-2xl p-4 border border-slate-200 dark:border-slate-800/60 font-mono text-[11px] space-y-1.5">
+                  <p className="text-slate-500 dark:text-slate-600">$ system_init --module=gate_emulator</p>
+                  <p className="text-emerald-500 dark:text-emerald-400">✔ ECE_MODULE loaded successfully</p>
+                  <p className="text-slate-700 dark:text-slate-500">
+                    <span className="text-primary-600 dark:text-primary-400 font-semibold">INPUTS →</span>{" "}
+                    A=<span className={gateA ? "text-emerald-500 dark:text-emerald-400" : "text-slate-400 dark:text-slate-600"}>{gateA}</span>,{" "}
+                    B=<span className={gateB ? "text-emerald-500 dark:text-emerald-400" : "text-slate-400 dark:text-slate-600"}>{gateB}</span>
                   </p>
-                  <p className="text-slate-500">
-                    <span className="text-purple-400">OUTPUTS →</span>{" "}
+                  <p className="text-slate-700 dark:text-slate-500">
+                    <span className="text-purple-600 dark:text-purple-400 font-semibold">OUTPUTS →</span>{" "}
                     AND={outAnd}, OR={outOr}, XOR={outXor}, NAND={outNand}
                   </p>
                   <div className="flex items-center gap-1.5 pt-0.5">
-                    <span className="text-slate-600">$</span>
-                    <span className="text-slate-300 animate-pulse">█</span>
+                    <span className="text-slate-400 dark:text-slate-600">$</span>
+                    <span className="text-slate-700 dark:text-slate-300 animate-pulse">█</span>
                   </div>
                 </div>
 
@@ -278,7 +278,7 @@ export const Hero = () => {
                     <button
                       key={label}
                       onClick={() => set((v) => (v === 0 ? 1 : 0))}
-                      className="flex-1 flex flex-col items-center gap-2 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition-all duration-200 group"
+                      className="flex-1 flex flex-col items-center gap-2 p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 group"
                     >
                       <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
                         {label}
@@ -287,12 +287,12 @@ export const Hero = () => {
                         className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold font-mono transition-all duration-300 border-2 ${
                           val === 1
                             ? `bg-gradient-to-br ${color} text-white border-transparent shadow-lg`
-                            : "bg-slate-950 text-slate-600 border-slate-800"
+                            : "bg-slate-200 dark:bg-slate-950 text-slate-500 dark:text-slate-600 border-slate-300 dark:border-slate-800"
                         }`}
                       >
                         {val}
                       </div>
-                      <span className={`text-[10px] font-mono font-semibold uppercase tracking-wider ${val === 1 ? "text-emerald-400" : "text-slate-600"}`}>
+                      <span className={`text-[10px] font-mono font-semibold uppercase tracking-wider ${val === 1 ? "text-emerald-500 dark:text-emerald-400" : "text-slate-450 dark:text-slate-600"}`}>
                         {val === 1 ? "HIGH" : "LOW"}
                       </span>
                     </button>
@@ -307,19 +307,19 @@ export const Hero = () => {
                       className={`flex items-center justify-between p-3 rounded-xl border transition-all duration-200 ${
                         result === 1
                           ? "bg-emerald-500/5 border-emerald-500/20"
-                          : "bg-slate-900/40 border-slate-800/60"
+                          : "bg-slate-50 dark:bg-slate-900/40 border-slate-200 dark:border-slate-800/60"
                       }`}
                     >
                       <div>
                         <p className={`text-xs font-mono font-bold ${color}`}>{name}</p>
-                        <p className="text-[10px] text-slate-600 font-mono">{expr}</p>
+                        <p className="text-[10px] text-slate-500 dark:text-slate-600 font-mono">{expr}</p>
                       </div>
                       <div className="flex flex-col items-end gap-1">
                         <Circle
                           size={8}
-                          className={result === 1 ? "fill-emerald-400 text-emerald-400" : "fill-slate-700 text-slate-700"}
+                          className={result === 1 ? "fill-emerald-500 dark:fill-emerald-400 text-emerald-500 dark:text-emerald-400" : "fill-slate-300 dark:fill-slate-700 text-slate-300 dark:text-slate-700"}
                         />
-                        <span className={`text-[10px] font-mono font-bold ${result === 1 ? "text-emerald-400" : "text-slate-600"}`}>
+                        <span className={`text-[10px] font-mono font-bold ${result === 1 ? "text-emerald-500 dark:text-emerald-400" : "text-slate-450 dark:text-slate-600"}`}>
                           {result === 1 ? "1" : "0"}
                         </span>
                       </div>
@@ -328,7 +328,7 @@ export const Hero = () => {
                 </div>
 
                 {/* ── System status bar ── */}
-                <div className="flex items-center justify-between pt-1 text-[10px] font-mono text-slate-600 border-t border-slate-800/60">
+                <div className="flex items-center justify-between pt-1 text-[10px] font-mono text-slate-500 dark:text-slate-600 border-t border-slate-200 dark:border-slate-800/60">
                   <span>BAUD_RATE: 115200</span>
                   <span className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

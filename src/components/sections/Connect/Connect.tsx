@@ -144,7 +144,7 @@ export const Connect = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06, duration: 0.5 }}
               whileHover={{ y: -5 }}
-              className={`group relative flex flex-col p-5 rounded-2xl border transition-all duration-300 ${platform.accentBg} ${platform.accentBorder} bg-slate-50 dark:bg-slate-900/40 hover:shadow-lg cursor-pointer overflow-hidden`}
+              className="group relative flex flex-col p-5 rounded-2xl border border-slate-200 dark:border-slate-800/60 bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:border-slate-300 dark:hover:border-slate-700/60 transition-all duration-300 hover:shadow-lg cursor-pointer overflow-hidden"
             >
               {/* Subtle gradient accent in corner */}
               <div className="absolute top-0 right-0 w-20 h-20 opacity-5 pointer-events-none">

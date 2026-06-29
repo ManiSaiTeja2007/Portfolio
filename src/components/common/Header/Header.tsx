@@ -28,13 +28,8 @@ export const Header = () => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (location.pathname !== '/') {
-      setIsScrolled(true);
-      return;
-    }
-
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (location.pathname !== '/' || window.innerWidth < 768 || window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -43,7 +38,11 @@ export const Header = () => {
 
     handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, [location.pathname]);
 
   const navLinks = [

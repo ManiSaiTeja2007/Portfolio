@@ -93,7 +93,7 @@ const StatCard = memo(({ icon, label, value, subValue, glowColor, loading }: Sta
     initial={{ opacity: 0, y: 15 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="relative bg-slate-900/90 dark:bg-slate-950/60 rounded-2xl p-6 border border-slate-800 shadow-lg hover:border-slate-700 hover:shadow-xl transition-all duration-300 group overflow-hidden"
+    className="relative bg-white dark:bg-slate-950/60 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg hover:border-primary-500/30 dark:hover:border-slate-700 hover:shadow-xl transition-all duration-300 group overflow-hidden"
   >
     {/* Pulsing Active LED Indicator */}
     <div className="absolute top-4 right-4 flex items-center gap-1.5">
@@ -102,7 +102,7 @@ const StatCard = memo(({ icon, label, value, subValue, glowColor, loading }: Sta
     </div>
 
     <div className="flex items-center gap-3.5 mb-4">
-      <div className="p-3 bg-slate-800/80 rounded-xl text-slate-300 group-hover:text-white transition-colors">
+      <div className="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-xl text-slate-500 dark:text-slate-300 group-hover:text-primary-600 dark:group-hover:text-white transition-colors">
         {icon}
       </div>
       <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">
@@ -112,12 +112,12 @@ const StatCard = memo(({ icon, label, value, subValue, glowColor, loading }: Sta
     
     {loading ? (
       <div className="space-y-2">
-        <div className="h-9 w-24 bg-slate-800 rounded animate-pulse" />
-        <div className="h-4 w-32 bg-slate-800 rounded animate-pulse" />
+        <div className="h-9 w-24 bg-slate-200 dark:bg-slate-800 rounded animate-pulse" />
+        <div className="h-4 w-32 bg-slate-200 dark:bg-slate-800 rounded animate-pulse" />
       </div>
     ) : (
       <div className="space-y-1">
-        <div className="text-3xl font-poppins font-black text-slate-50 dark:text-white tracking-tight">
+        <div className="text-3xl font-poppins font-black text-slate-900 dark:text-white tracking-tight">
           {value}
         </div>
         {subValue && (
@@ -151,9 +151,9 @@ const LanguageBar = memo(({ language, index }: LanguageBarProps) => {
   const barGradient = barColors[index % barColors.length];
 
   return (
-    <div className="space-y-2 p-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
+    <div className="space-y-2 p-3 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800/60">
       <div className="flex justify-between items-center text-xs font-mono">
-        <span className="font-bold text-slate-300">
+        <span className="font-bold text-slate-700 dark:text-slate-300">
           [{language.name.toUpperCase()}]
         </span>
         <span className="text-slate-400 font-semibold">
@@ -359,12 +359,12 @@ export const Stats = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-12 p-8 bg-slate-900/90 dark:bg-slate-950/60 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden"
+              className="mb-12 p-8 bg-white dark:bg-slate-950/60 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden"
             >
               {/* Header decoration */}
-              <div className="flex items-center gap-2 mb-6 border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-2 mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <Code size={18} className="text-primary-brand" />
-                <h3 className="text-sm font-mono font-bold text-slate-200 uppercase tracking-widest">
+                <h3 className="text-sm font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
                   LANGUAGE_BYTES_INDEX
                 </h3>
               </div>
@@ -375,7 +375,7 @@ export const Stats = () => {
                 ))}
               </div>
 
-              <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+              <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 mt-6 pt-4 border-t border-slate-200 dark:border-slate-800/60">
                 <span>TELEMETRY_REFRESH: SUCCESS</span>
                 <span>SYNC_TIME: {new Date(state.stats?.updatedAt || '').toLocaleTimeString()}</span>
               </div>
