@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
-import { SECTION_IDS } from '@/utils/constants';
+import { SECTION_IDS, PERSONAL_INFO } from '@/utils/constants';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -97,7 +97,7 @@ export const Header = () => {
             onClick={(e) => handleNavClick(e, '#hero')}
             className="text-2xl font-poppins font-bold text-primary-brand hidden md:block"
           >
-            Mani Sai Teja
+            {PERSONAL_INFO.firstName}
           </a>
         </div>
 

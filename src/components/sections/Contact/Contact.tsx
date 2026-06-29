@@ -306,7 +306,7 @@ export const Contact = () => {
                         value={form.name}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border ${errors.name ? "border-red-500" : "border-slate-200 dark:border-slate-800"} focus:outline-none focus:ring-2 focus:ring-primary-brand focus:border-transparent transition-all`}
-                        placeholder="Mani Sai Teja"
+                        placeholder={PERSONAL_INFO.firstName}
                       />
                       {errors.name && (
                         <p className="text-xs text-red-500">{errors.name}</p>

@@ -1,5 +1,6 @@
-// src/utils/constants.ts
 export const PERSONAL_INFO = {
+  firstName: 'Mani Sai Teja',
+  lastName: 'Bejjala',
   name: 'Mani Sai Teja Bejjala',
   fullName: 'Mani Sai Teja Bejjala',
   title: 'Data Analyst & Systems Engineer',

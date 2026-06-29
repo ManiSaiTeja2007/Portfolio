@@ -60,8 +60,8 @@ export const Footer = () => {
                 <span className="text-white font-poppins font-bold text-xl">M</span>
               </div>
               <div>
-                <p className="text-white font-poppins font-bold text-lg leading-none">Mani Sai Teja</p>
-                <p className="text-slate-500 text-xs font-mono mt-0.5">Bejjala</p>
+                <p className="text-white font-poppins font-bold text-lg leading-none">{PERSONAL_INFO.firstName}</p>
+                <p className="text-slate-500 text-xs font-mono mt-0.5">{PERSONAL_INFO.lastName}</p>
               </div>
             </div>
 
@@ -167,7 +167,7 @@ export const Footer = () => {
           <div className="flex items-center gap-2 text-slate-600 text-xs font-mono">
             <Terminal size={12} className="text-primary-500" />
             <span>
-              © {new Date().getFullYear()} Mani Sai Teja Bejjala — Built with{' '}
+              © {new Date().getFullYear()} {PERSONAL_INFO.fullName} — Built with{' '}
               <span className="inline-flex items-center gap-1 text-rose-500">
                 <Heart size={10} className="fill-current" /> React
               </span>{' '}

@@ -146,7 +146,7 @@ export const Hero = () => {
               </span>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-poppins font-extrabold tracking-tight leading-none">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-500 to-secondary-500 dark:from-indigo-400 dark:via-purple-400 dark:to-teal-400">
-                  {PERSONAL_INFO.name.split(" ").slice(0, 3).join(" ")}
+                  {PERSONAL_INFO.firstName} {PERSONAL_INFO.lastName}
                 </span>
               </h1>
             </div>
