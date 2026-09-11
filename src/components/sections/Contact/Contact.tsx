@@ -49,9 +49,14 @@ export const Contact = () => {
     if (!form.name.trim()) tempErrors.name = "Name is required";
     if (!form.subject.trim()) tempErrors.subject = "Subject is required";
 
-    if (!form.email.trim()) {
+    const emailTrimmed = form.email.trim();
+    const atIdx = emailTrimmed.indexOf("@");
+    const dotIdx = emailTrimmed.lastIndexOf(".");
+    const isValidEmail = atIdx > 0 && dotIdx > atIdx + 1 && dotIdx < emailTrimmed.length - 1 && !/\s/.test(emailTrimmed);
+
+    if (!emailTrimmed) {
       tempErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    } else if (!isValidEmail) {
       tempErrors.email = "Email address is invalid";
     }
 
