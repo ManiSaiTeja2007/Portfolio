@@ -34,7 +34,7 @@ export async function fetchGitHubStreak(): Promise<StreakResponse> {
 
         // Process events to calculate streak
         const dates = events.map(e => new Date(e.created_at).toDateString());
-        const uniqueDates = [...new Set(dates)].sort();
+        const uniqueDates = [...new Set(dates)].sort((a, b) => a.localeCompare(b));
 
         let longestStreak = 0;
         let currentCount = 0;

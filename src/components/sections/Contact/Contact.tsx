@@ -51,7 +51,7 @@ export const Contact = () => {
 
     if (!form.email.trim()) {
       tempErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       tempErrors.email = "Email address is invalid";
     }
 

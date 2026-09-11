@@ -58,7 +58,12 @@ export function throttle<T extends (...args: unknown[]) => unknown>(
 }
 
 export function generateId(): string {
-  return Math.random().toString(36).substr(2, 9);
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return array[0].toString(36);
 }
 
 export function safeJsonParse<T>(str: string, fallback: T): T {

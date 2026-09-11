@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 next.md
 .cache/
+
+# Sonar / Security tokens
+.env
+.env*
+.sonar-token
+sonar-token.env

@@ -422,8 +422,8 @@ export const getPortfolioMetrics = () => {
     categories: projectCategories.length,
     estimatedImpact: projects.reduce((sum: number, p: Project) => {
       const impact = p.metrics?.[1]?.improvement || '';
-      const match = impact.match(/(\d+)%/);
-      return sum + (match ? parseInt(match[1]) : 0);
+      const match = impact.match(/\d+(?=%)/);
+      return sum + (match ? Number.parseInt(match[0], 10) : 0);
     }, 0),
   };
 };
