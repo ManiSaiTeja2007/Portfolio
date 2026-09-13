@@ -85,24 +85,24 @@ export const Header = () => {
         ? 'top-4 opacity-100 translate-y-0 pointer-events-auto' 
         : '-top-20 opacity-0 -translate-y-4 pointer-events-none'
     }`}>
-      <div className="px-6 py-3.5 flex justify-between items-center">
+      <div className="px-4 md:px-6 py-3.5 flex justify-between items-center gap-4">
         {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <div className="h-10 w-10 bg-primary-brand rounded-lg flex items-center justify-center">
+        <div className="flex items-center space-x-3 flex-shrink-0">
+          <div className="h-10 w-10 bg-primary-brand rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
             <span className="text-white font-poppins font-bold text-2xl">M</span>
           </div>
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="text-2xl font-poppins font-bold text-primary-brand hidden md:block"
+            className="text-xl lg:text-2xl font-poppins font-bold text-primary-brand hidden md:block whitespace-nowrap flex-shrink-0"
           >
             {PERSONAL_INFO.firstName}
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          <nav className="flex space-x-6">
+        <div className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-shrink">
+          <nav className="flex space-x-3 lg:space-x-6 overflow-x-auto no-scrollbar">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
@@ -110,7 +110,7 @@ export const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative font-medium px-2 py-1 transition-colors duration-300 ${
+                  className={`relative font-medium text-sm lg:text-base whitespace-nowrap px-1.5 py-1 transition-colors duration-300 ${
                     isActive
                       ? 'text-primary-brand dark:text-blue-400 font-semibold'
                       : 'text-slate-700 dark:text-slate-300 hover:text-primary-brand dark:hover:text-blue-400'

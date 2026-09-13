@@ -1,4 +1,4 @@
-// src/config/github.ts
 export const GITHUB_CONFIG = {
-    username: 'manisaiteja2007'
+    username: 'manisaiteja2007',
+    token: import.meta.env.VITE_GITHUB_TOKEN || ''
 };

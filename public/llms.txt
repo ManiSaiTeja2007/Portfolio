@@ -1,0 +1,14 @@
+# Mani Sai Teja Bejjala - Portfolio
+
+> Hardware-Informed Frontend & Full Stack Developer | IIIT Sri City
+
+## About
+Mani Sai Teja Bejjala is a Full-Stack Engineer and Hardware Enthusiast specializing in React, TypeScript, Vite, Tailwind CSS, and System Architecture.
+
+## Key Projects
+- **Portfolio Website**: Interactive developer portfolio built with React, Vite, Framer Motion, and Tailwind CSS.
+- **Hardware & Software Integrations**: Projects integrating low-level hardware awareness with modern front-end interfaces.
+
+## Core Skills & Technologies
+- **Frontend**: React 19, TypeScript, Tailwind CSS, Framer Motion, Vite, Zustand
+- **Backend & Tooling**: Node.js, REST APIs, SonarCloud, Chrome DevTools, Git

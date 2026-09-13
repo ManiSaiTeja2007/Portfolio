@@ -308,6 +308,7 @@ export const Contact = () => {
                         type="text"
                         id="name"
                         name="name"
+                        autoComplete="name"
                         value={form.name}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border ${errors.name ? "border-red-500" : "border-slate-200 dark:border-slate-800"} focus:outline-none focus:ring-2 focus:ring-primary-brand focus:border-transparent transition-all`}
@@ -330,6 +331,7 @@ export const Contact = () => {
                         type="email"
                         id="email"
                         name="email"
+                        autoComplete="email"
                         value={form.email}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border ${errors.email ? "border-red-500" : "border-slate-200 dark:border-slate-800"} focus:outline-none focus:ring-2 focus:ring-primary-brand focus:border-transparent transition-all`}
