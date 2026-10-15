@@ -1,38 +1,38 @@
 // src/components/sections/About/About.tsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, Code2, BookOpen, Target, Award, LineChart } from "lucide-react";
+import { Cpu, BookOpen, Target, Award, LineChart, Bot } from "lucide-react";
 import {
-  PERSONAL_INFO,
+  ABOUT_CONFIG,
   ACADEMIC_INFO,
   AVAILABILITY,
   FOCUS_AREAS,
 } from "@/utils/constants";
 import { principlesData } from "@/utils/principlesData";
 
-type TabType = "analyst" | "systems" | "edge";
+type TabType = "robotics" | "systems" | "edge";
 
 export const About = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("analyst");
+  const [activeTab, setActiveTab] = useState<TabType>("robotics");
 
   const tabsConfig = [
     {
-      id: "analyst" as TabType,
-      label: "[The Data Analyst]",
-      shortLabel: "[Analyst]",
-      icon: <LineChart className="w-4 h-4 flex-shrink-0" />,
+      id: "robotics" as TabType,
+      label: ABOUT_CONFIG.tabs.robotics.label,
+      shortLabel: ABOUT_CONFIG.tabs.robotics.shortLabel,
+      icon: <Bot className="w-4 h-4 flex-shrink-0" />,
     },
     {
       id: "systems" as TabType,
-      label: "[The Systems Engineer]",
-      shortLabel: "[Systems]",
+      label: ABOUT_CONFIG.tabs.systems.label,
+      shortLabel: ABOUT_CONFIG.tabs.systems.shortLabel,
       icon: <Cpu className="w-4 h-4 flex-shrink-0" />,
     },
     {
       id: "edge" as TabType,
-      label: "[The Edge AI Dev]",
-      shortLabel: "[Edge AI]",
-      icon: <Code2 className="w-4 h-4 flex-shrink-0" />,
+      label: ABOUT_CONFIG.tabs.edge.label,
+      shortLabel: ABOUT_CONFIG.tabs.edge.shortLabel,
+      icon: <LineChart className="w-4 h-4 flex-shrink-0" />,
     },
   ];
 
@@ -45,15 +45,13 @@ export const About = () => {
         {/* ── Section Header ── */}
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-            About Me
+            {ABOUT_CONFIG.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-poppins font-bold text-slate-900 dark:text-white leading-tight">
-            Systems-Level Data Analyst
+            {ABOUT_CONFIG.heading}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4 leading-relaxed">
-            Analyzing telemetry data and physical orbital coordinates at the
-            systems level, and designing high-performance proxies at the
-            software level.
+            {ABOUT_CONFIG.subtitle}
           </p>
         </div>
 
@@ -81,41 +79,15 @@ export const About = () => {
                 <Target size={20} />
               </div>
               <h3 className="text-sm md:text-base font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-widest">
-                My Philosophy
+                {ABOUT_CONFIG.philosophyTitle}
               </h3>
             </div>
 
             {/* Body text */}
             <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
-              <p>
-                I'm{" "}
-                <strong className="text-slate-900 dark:text-white">
-                  {PERSONAL_INFO.name}
-                </strong>
-                , a B.Tech student majoring in{" "}
-                <strong className="text-slate-900 dark:text-white">
-                  {ACADEMIC_INFO.degree}
-                </strong>{" "}
-                at{" "}
-                <strong className="text-primary-600 dark:text-primary-400">
-                  {PERSONAL_INFO.college}
-                </strong>
-                .
-              </p>
-              <p>
-                My ECE engineering background provides a unique{" "}
-                <strong className="text-slate-900 dark:text-white">
-                  systems perspective
-                </strong>
-                . I understand that every variable tracked in telemetry, and
-                every packet routed through a gateway, is bound by physical
-                registers, clock cycles, and logic gates on actual microchips.
-              </p>
-              <p>
-                This awareness guides how I perform data analysis and systems
-                design — ensuring pipelines are mathematically rigorous,
-                lightweight, and optimized for speed and footprint.
-              </p>
+              {ABOUT_CONFIG.philosophyParagraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
             </div>
           </motion.div>
 
@@ -169,10 +141,10 @@ export const About = () => {
             {/* ── Tab content ── */}
             <div className="flex-1 min-w-0">
               <AnimatePresence mode="wait">
-                {/* Analyst tab */}
-                {activeTab === "analyst" && (
+                {/* Robotics tab */}
+                {activeTab === "robotics" && (
                   <motion.div
-                    key="analyst"
+                    key="robotics"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
@@ -180,28 +152,27 @@ export const About = () => {
                   >
                     <div>
                       <h4 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">
-                        Data Analytics & Simulation
+                        {ABOUT_CONFIG.tabs.robotics.heading}
                       </h4>
                       <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                        Modeling circular orbits, propagating Keplerian paths,
-                        and forecasting customer telemetry
+                        {ABOUT_CONFIG.tabs.robotics.description}
                       </p>
                     </div>
 
                     <div className="p-4 bg-white dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800/80">
                       <div className="flex items-center justify-between gap-4 flex-wrap">
                         <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">
-                          Current CGPA Score:
+                          Academic Standing:
                         </span>
                         <span className="text-base font-bold text-primary-brand dark:text-blue-400 font-mono flex-shrink-0">
-                          {ACADEMIC_INFO.gpa}
+                          {ACADEMIC_INFO.gpa} • {ACADEMIC_INFO.degree.split(" in ")[1]}
                         </span>
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                        Relevant Analytical Coursework
+                        {ABOUT_CONFIG.tabs.robotics.sectionLabel}
                       </h5>
                       <div className="flex flex-wrap gap-2 pt-1">
                         {ACADEMIC_INFO.relevantCourses.map((course, idx) => (
@@ -228,11 +199,10 @@ export const About = () => {
                   >
                     <div>
                       <h4 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">
-                        Go Systems & Networks
+                        {ABOUT_CONFIG.tabs.systems.heading}
                       </h4>
                       <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                        Designing reverse proxies with EWMA scoring, UDP file
-                        transfers, and Memberlist Gossip cluster states
+                        {ABOUT_CONFIG.tabs.systems.description}
                       </p>
                     </div>
 
@@ -259,10 +229,10 @@ export const About = () => {
 
                     <div className="space-y-2">
                       <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                        High-Performance Focus Areas
+                        {ABOUT_CONFIG.tabs.systems.sectionLabel}
                       </h5>
                       <div className="flex flex-wrap gap-2 pt-1">
-                        {FOCUS_AREAS.slice(1, 4).map((focus, idx) => (
+                        {FOCUS_AREAS.slice(0, 4).map((focus, idx) => (
                           <span
                             key={idx}
                             className="px-2.5 py-1.5 bg-white dark:bg-slate-900/40 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300"
@@ -286,23 +256,18 @@ export const About = () => {
                   >
                     <div>
                       <h4 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white">
-                        Edge AI & Mobile (Kotlin)
+                        {ABOUT_CONFIG.tabs.edge.heading}
                       </h4>
                       <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                        Executing local on-device ML OCR zoning classifiers to
-                        audit package food contents
+                        {ABOUT_CONFIG.tabs.edge.description}
                       </p>
                     </div>
 
                     <div className="space-y-3">
                       <h5 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                        Engineering Methodologies
+                        {ABOUT_CONFIG.tabs.edge.sectionLabel}
                       </h5>
-                      {[
-                        "Automated Project State Package (PSP) auditing frameworks",
-                        "Local-first offline thread-based dictionary matching search systems",
-                        "Google ML Kit CameraX pipeline integrations",
-                      ].map((item, idx) => (
+                      {ABOUT_CONFIG.tabs.edge.methodologies.map((item, idx) => (
                         <div
                           key={idx}
                           className="flex items-start gap-2.5 text-slate-700 dark:text-slate-300 text-sm"
@@ -336,11 +301,10 @@ export const About = () => {
         <div className="mt-16 md:mt-24 pt-10 md:pt-12 border-t border-slate-200 dark:border-slate-800/80">
           <div className="text-center mb-10 md:mb-12">
             <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">
-              My Engineering Principles
+              {ABOUT_CONFIG.principlesHeading}
             </h3>
             <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
-              Six developer values that guide how I build and scale technology
-              systems.
+              {ABOUT_CONFIG.principlesSubtitle}
             </p>
           </div>
 

@@ -16,7 +16,7 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'animation-vendor': ['framer-motion', 'aos'],
-          'ui-vendor': ['lucide-react', '@iconify/react'],
+          'ui-vendor': ['lucide-react', 'react-icons'],
         },
       },
     },

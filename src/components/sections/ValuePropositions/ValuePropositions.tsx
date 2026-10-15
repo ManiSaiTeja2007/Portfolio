@@ -1,33 +1,15 @@
 // src/components/sections/ValuePropositions/ValuePropositions.tsx
 import { motion } from 'framer-motion';
 import { Cpu, Layers, TrendingUp, ArrowRight } from 'lucide-react';
-import { VALUE_PROPS_BENEFITS } from '@/utils/constants';
+import { VALUE_PROPS_BENEFITS, VALUE_PROPOSITIONS_CONFIG } from '@/utils/constants';
+
+const iconMap = {
+  cpu: <Cpu className="text-white" size={24} />,
+  layers: <Layers className="text-white" size={24} />,
+  trending: <TrendingUp className="text-white" size={24} />,
+};
 
 export const ValuePropositions = () => {
-  const cards = [
-    {
-      icon: <Cpu className="text-white" size={24} />,
-      title: "Hardware Understanding → Better Software",
-      description: "My ECE engineering background provides unique systems-level insights. I understand performance constraints from silicon to interface, enabling me to build web apps that are optimally resource-aware.",
-      color: "from-blue-600 to-cyan-500",
-      delay: 0.1,
-    },
-    {
-      icon: <Layers className="text-white" size={24} />,
-      title: "Full-Stack Mindset → End-to-End Systems",
-      description: "I approach technical challenges holistically. From sensor data acquisition on ESP32 to state interfaces in React, I architect cohesive end-to-end architectures rather than isolated silos.",
-      color: "from-purple-600 to-pink-500",
-      delay: 0.2,
-    },
-    {
-      icon: <TrendingUp className="text-white" size={24} />,
-      title: "Continuous Learning → Scalable Frameworks",
-      description: "Silicon and software evolve rapidly. I maintain a disciplined study routine, exploring edge computing, microservices, and design patterns to build modern, future-proof products.",
-      color: "from-green-600 to-emerald-500",
-      delay: 0.3,
-    },
-  ];
-
   return (
     <section id="value-propositions" className="py-24 bg-slate-50 dark:bg-slate-950/40 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,21 +22,21 @@ export const ValuePropositions = () => {
           className="text-center mb-20"
         >
           <span className="px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4 inline-block">
-            Systems Value
+            {VALUE_PROPOSITIONS_CONFIG.badge}
           </span>
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-            Where Silicon Meets Interface
+            {VALUE_PROPOSITIONS_CONFIG.heading}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            My engineering perspective combines hardware constraints with software aesthetics to deliver exceptional technical depth.
+            {VALUE_PROPOSITIONS_CONFIG.subtitle}
           </p>
         </motion.div>
 
         {/* 3 Columns of Integrated Circuit (IC) Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {cards.map((card) => (
+          {VALUE_PROPOSITIONS_CONFIG.cards.map((card) => (
             <motion.div
-              key={card.title}
+              key={card.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -82,7 +64,7 @@ export const ValuePropositions = () => {
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-2.5 bg-slate-200 dark:bg-slate-950 rounded-b-lg border-x border-b border-slate-300 dark:border-slate-800" />
 
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${card.color} flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300 shadow-md`}>
-                  {card.icon}
+                  {iconMap[card.iconType]}
                 </div>
 
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-primary-brand transition-colors">

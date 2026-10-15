@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { MobileMenu } from './MobileMenu';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
-import { SECTION_IDS, PERSONAL_INFO } from '@/utils/constants';
+import { SECTION_IDS, PERSONAL_INFO, NAV_LINKS } from '@/utils/constants';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -44,17 +44,6 @@ export const Header = () => {
       window.removeEventListener('resize', handleScroll);
     };
   }, [location.pathname]);
-
-  const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#connect', label: 'Connect' },
-    { href: '#stats', label: 'Stats' },
-    { href: '#contact', label: 'Contact' },
-    { href: '#fun-fact', label: 'Fun Fact' },
-  ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -103,7 +92,7 @@ export const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-shrink">
           <nav className="flex space-x-3 lg:space-x-6 overflow-x-auto no-scrollbar">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
                 <a
@@ -148,7 +137,7 @@ export const Header = () => {
       {/* Mobile Menu */}
       <MobileMenu 
         isOpen={isMobileMenuOpen} 
-        links={navLinks}
+        links={NAV_LINKS}
         activeSection={activeSection}
         onClose={() => setIsMobileMenuOpen(false)}
       />

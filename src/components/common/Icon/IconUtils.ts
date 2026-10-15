@@ -1,249 +1,287 @@
 // src/components/common/Icon/IconUtils.ts
-// Enhanced icon mapping with fallbacks
-export const ICON_MAP = new Map([
+import {
+  SiRos,
+  SiOpencv,
+  SiArduino,
+  SiRaspberrypi,
+  SiEspressif,
+  SiStmicroelectronics,
+  SiCplusplus,
+  SiC,
+  SiPython,
+  SiGo,
+  SiRust,
+  SiPytorch,
+  SiTensorflow,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiLinux,
+  SiDocker,
+  SiGit,
+  SiGithub,
+  SiPostgresql,
+  SiRedis,
+  SiMongodb,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiJavascript,
+  SiPostman,
+  SiHtml5,
+  SiCss,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiAngular,
+  SiSvelte,
+  SiNodedotjs,
+  SiExpress,
+  SiDjango,
+  SiFlask,
+  SiSpring,
+  SiMysql,
+  SiSqlite,
+  SiFirebase,
+  SiSupabase,
+  SiGooglecloud,
+  SiKubernetes,
+  SiTerraform,
+  SiAnsible,
+  SiJenkins,
+  SiGitlab,
+  SiBitbucket,
+  SiFigma,
+  SiNpm,
+  SiYarn,
+  SiWebpack,
+  SiVite,
+  SiGraphql,
+  SiApollographql,
+  SiRedux,
+  SiSocketdotio,
+  SiThreedotjs,
+  SiD3,
+  SiChartdotjs,
+  SiJupyter,
+  SiFlutter,
+  SiAndroid,
+  SiApple,
+  SiJest,
+  SiCypress,
+  SiMocha,
+  SiKotlin,
+  SiFastapi,
+  SiJulia,
+  SiGradle,
+  SiPrometheus,
+  SiMarkdown,
+  SiFramer,
+  SiGooglegemini,
+} from 'react-icons/si';
+import { FaJava, FaAws } from 'react-icons/fa6';
+import { VscVscode } from 'react-icons/vsc';
+import { Code2, Cpu } from 'lucide-react';
+import {
+  GazeboIcon,
+  EmbeddedCIcon,
+  STM32Icon,
+  KinematicsIcon,
+  SLAMIcon,
+  PlaywrightIcon,
+  type IconComponent,
+} from './CustomIcons';
+
+export type { IconComponent };
+
+export const normalizeTechName = (techName: string): string => {
+  return techName
+    .toLowerCase()
+    .replace(/\+\+/g, 'plusplus')
+    .replace(/#/g, 'sharp')
+    .replace(/[^a-z0-9]/g, '')
+    .trim();
+};
+
+export const ICON_COMPONENT_MAP: Record<string, IconComponent> = {
+  // Robotics & Autonomous Control
+  ros: SiRos,
+  ros2: SiRos,
+  rosros2: SiRos,
+  opencv: SiOpencv,
+  gazebo: GazeboIcon,
+  gazebosim: GazeboIcon,
+  kinematics: KinematicsIcon,
+  kinematicscontrol: KinematicsIcon,
+  slam: SLAMIcon,
+  slamnavigation: SLAMIcon,
+
+  // Hardware & Embedded Systems
+  arduino: SiArduino,
+  raspberrypi: SiRaspberrypi,
+  raspberry: SiRaspberrypi,
+  rpi: SiRaspberrypi,
+  esp32: SiEspressif,
+  espressif: SiEspressif,
+  stm32: STM32Icon,
+  stmicroelectronics: SiStmicroelectronics,
+  freertos: EmbeddedCIcon,
+  freertosembeddedc: EmbeddedCIcon,
+  embeddedc: EmbeddedCIcon,
+
   // Programming Languages
-  ['react', 'simple-icons:react'],
-  ['typescript', 'simple-icons:typescript'],
-  ['javascript', 'simple-icons:javascript'],
-  ['python', 'simple-icons:python'],
-  ['java', 'simple-icons:java'],
-  ['c', 'simple-icons:c'],
-  ['cpp', 'simple-icons:cplusplus'],
-  ['rust', 'simple-icons:rust'],
-  ['go', 'simple-icons:go'],
-  ['kotlin', 'simple-icons:kotlin'],
-  ['swift', 'simple-icons:swift'],
-  ['php', 'simple-icons:php'],
-  ['ruby', 'simple-icons:ruby'],
+  cpp: SiCplusplus,
+  cplusplus: SiCplusplus,
+  c: SiC,
+  python: SiPython,
+  python312: SiPython,
+  py: SiPython,
+  go: SiGo,
+  golang: SiGo,
+  rust: SiRust,
+  java: FaJava,
+  kotlin: SiKotlin,
+  julia: SiJulia,
 
-  // Web Technologies
-  ['html5', 'simple-icons:html5'],
-  ['css3', 'simple-icons:css3'],
-  ['sass', 'simple-icons:sass'],
-  ['tailwindcss', 'simple-icons:tailwindcss'],
-  ['bootstrap', 'simple-icons:bootstrap'],
+  // AI & Machine Learning
+  pytorch: SiPytorch,
+  torch: SiPytorch,
+  tensorflow: SiTensorflow,
+  tf: SiTensorflow,
+  scikitlearn: SiScikitlearn,
+  sklearn: SiScikitlearn,
+  pandas: SiPandas,
+  numpy: SiNumpy,
+  gemini: SiGooglegemini,
+  googlegemini: SiGooglegemini,
+  geminiai: SiGooglegemini,
+  googlegemini25flash: SiGooglegemini,
+  tinyml: Cpu,
 
-  // Frameworks & Libraries
-  ['nextjs', 'simple-icons:nextdotjs'],
-  ['vuejs', 'simple-icons:vuedotjs'],
-  ['angular', 'simple-icons:angular'],
-  ['svelte', 'simple-icons:svelte'],
-  ['nodejs', 'simple-icons:nodedotjs'],
-  ['express', 'simple-icons:express'],
-  ['django', 'simple-icons:django'],
-  ['flask', 'simple-icons:flask'],
-  ['spring', 'simple-icons:spring'],
+  // Cloud & Systems DevOps
+  linux: SiLinux,
+  docker: SiDocker,
+  git: SiGit,
+  github: SiGithub,
+  gitlab: SiGitlab,
+  bitbucket: SiBitbucket,
+  kubernetes: SiKubernetes,
+  k8s: SiKubernetes,
+  terraform: SiTerraform,
+  ansible: SiAnsible,
+  jenkins: SiJenkins,
+  aws: FaAws,
+  amazonwebservices: FaAws,
+  googlecloud: SiGooglecloud,
+  gcp: SiGooglecloud,
+  prometheus: SiPrometheus,
 
-  // Databases
-  ['mongodb', 'simple-icons:mongodb'],
-  ['postgresql', 'simple-icons:postgresql'],
-  ['mysql', 'simple-icons:mysql'],
-  ['redis', 'simple-icons:redis'],
-  ['sqlite', 'simple-icons:sqlite'],
-  ['firebase', 'simple-icons:firebase'],
-  ['supabase', 'simple-icons:supabase'],
+  // Databases & Storage
+  postgresql: SiPostgresql,
+  postgres: SiPostgresql,
+  redis: SiRedis,
+  mongodb: SiMongodb,
+  mongo: SiMongodb,
+  mysql: SiMysql,
+  sqlite: SiSqlite,
+  firebase: SiFirebase,
+  supabase: SiSupabase,
 
-  // Cloud & DevOps
-  ['aws', 'simple-icons:amazonaws'],
-  ['azure', 'simple-icons:microsoftazure'],
-  ['googlecloud', 'simple-icons:googlecloud'],
-  ['docker', 'simple-icons:docker'],
-  ['kubernetes', 'simple-icons:kubernetes'],
-  ['terraform', 'simple-icons:terraform'],
-  ['ansible', 'simple-icons:ansible'],
-  ['jenkins', 'simple-icons:jenkins'],
+  // Frontend & UI
+  react: SiReact,
+  reactjs: SiReact,
+  react19: SiReact,
+  typescript: SiTypescript,
+  ts: SiTypescript,
+  tailwindcss: SiTailwindcss,
+  tailwind: SiTailwindcss,
+  javascript: SiJavascript,
+  js: SiJavascript,
+  html: SiHtml5,
+  html5: SiHtml5,
+  css: SiCss,
+  css3: SiCss,
+  nextjs: SiNextdotjs,
+  vuejs: SiVuedotjs,
+  angular: SiAngular,
+  svelte: SiSvelte,
+  framermotion: SiFramer,
+  framer: SiFramer,
 
-  // Tools
-  ['git', 'simple-icons:git'],
-  ['github', 'simple-icons:github'],
-  ['gitlab', 'simple-icons:gitlab'],
-  ['bitbucket', 'simple-icons:bitbucket'],
-  ['vscode', 'simple-icons:visualstudiocode'],
-  ['intellij', 'simple-icons:intellijidea'],
-  ['figma', 'simple-icons:figma'],
-  ['postman', 'simple-icons:postman'],
-  ['npm', 'simple-icons:npm'],
-  ['yarn', 'simple-icons:yarn'],
-  ['webpack', 'simple-icons:webpack'],
-  ['vite', 'simple-icons:vite'],
+  // Backend & APIs
+  nodejs: SiNodedotjs,
+  express: SiExpress,
+  expressjs: SiExpress,
+  django: SiDjango,
+  flask: SiFlask,
+  fastapi: SiFastapi,
+  spring: SiSpring,
+  graphql: SiGraphql,
+  apollo: SiApollographql,
+  redux: SiRedux,
+  socketio: SiSocketdotio,
 
-  // Hardware & IoT
-  ['arduino', 'simple-icons:arduino'],
-  ['raspberrypi', 'simple-icons:raspberrypi'],
-  ['esp32', 'mdi:chip'],
-
-  // AI/ML
-  ['tensorflow', 'simple-icons:tensorflow'],
-  ['pytorch', 'simple-icons:pytorch'],
-  ['keras', 'simple-icons:keras'],
-  ['scikitlearn', 'simple-icons:scikitlearn'],
-  ['pandas', 'simple-icons:pandas'],
-  ['numpy', 'simple-icons:numpy'],
-  ['opencv', 'simple-icons:opencv'],
-  ['jupyter', 'simple-icons:jupyter'],
+  // Visual & Math
+  threejs: SiThreedotjs,
+  d3: SiD3,
+  d3js: SiD3,
+  chartjs: SiChartdotjs,
+  jupyter: SiJupyter,
 
   // Mobile
-  ['reactnative', 'simple-icons:react'],
-  ['flutter', 'simple-icons:flutter'],
-  ['android', 'simple-icons:android'],
-  ['ios', 'simple-icons:ios'],
+  reactnative: SiReact,
+  flutter: SiFlutter,
+  android: SiAndroid,
+  androidsdk: SiAndroid,
+  ios: SiApple,
 
-  // Testing
-  ['jest', 'simple-icons:jest'],
-  ['cypress', 'simple-icons:cypress'],
-  ['playwright', 'simple-icons:playwright'],
-  ['mocha', 'simple-icons:mocha'],
-  ['chai', 'simple-icons:chai'],
+  // Testing & Build
+  jest: SiJest,
+  cypress: SiCypress,
+  playwright: PlaywrightIcon,
+  mocha: SiMocha,
+  gradle: SiGradle,
+  markdown: SiMarkdown,
 
-  // Additional common ones
-  ['graphql', 'simple-icons:graphql'],
-  ['apollo', 'simple-icons:apollographql'],
-  ['redux', 'simple-icons:redux'],
-  ['socketio', 'simple-icons:socketdotio'],
-  ['threejs', 'simple-icons:threedotjs'],
-  ['d3', 'simple-icons:d3dotjs'],
-  ['chartjs', 'simple-icons:chartdotjs'],
-]);
-
-const iconCache = new Map<string, string>();
-
-// Improved normalization function
-export const normalizeTechName = (techName: string): string => {
-  return techName.toLowerCase()
-    .replace(/[^a-z0-9]/g, '')
-    .replace(/\s+/g, '')
-    .replace(/\./g, '')
-    .replace(/-/g, '')
-    .replace(/_/g, '');
+  // Developer Tools
+  vscode: VscVscode,
+  visualstudiocode: VscVscode,
+  postman: SiPostman,
+  figma: SiFigma,
+  npm: SiNpm,
+  yarn: SiYarn,
+  webpack: SiWebpack,
+  vite: SiVite,
 };
 
-// Function to find best matching icon
-export const findBestIcon = (normalizedTech: string): string => {
-  // Direct match
-  if (ICON_MAP.has(normalizedTech)) {
-    return ICON_MAP.get(normalizedTech)!;
+export const getTechIconComponent = (techName: string): IconComponent => {
+  const normalized = normalizeTechName(techName);
+
+  // Exact normalized match
+  if (ICON_COMPONENT_MAP[normalized]) {
+    return ICON_COMPONENT_MAP[normalized];
   }
 
-  // Try common variations
-  const variations: Record<string, string> = {
-    'typescript': 'typescript',
-    'ts': 'typescript',
-    'javascript': 'javascript',
-    'js': 'javascript',
-    'python': 'python',
-    'py': 'python',
-    'java': 'java',
-    'c++': 'cpp',
-    'cpp': 'cpp',
-    'cplusplus': 'cpp',
-    'reactjs': 'react',
-    'react.js': 'react',
-    'next.js': 'nextjs',
-    'node.js': 'nodejs',
-    'express.js': 'express',
-    'mongodb': 'mongodb',
-    'mongo': 'mongodb',
-    'postgres': 'postgresql',
-    'postgresql': 'postgresql',
-    'mysql': 'mysql',
-    'sql': 'mysql',
-    'aws': 'aws',
-    'amazonwebservices': 'aws',
-    'docker': 'docker',
-    'kubernetes': 'kubernetes',
-    'k8s': 'kubernetes',
-    'git': 'git',
-    'github': 'github',
-    'gitlab': 'gitlab',
-    'html': 'html5',
-    'css': 'css3',
-    'tailwind': 'tailwindcss',
-    'bootstrap': 'bootstrap',
-    'tensorflow': 'tensorflow',
-    'tf': 'tensorflow',
-    'pytorch': 'pytorch',
-    'torch': 'pytorch',
-    'numpy': 'numpy',
-    'np': 'numpy',
-    'pandas': 'pandas',
-    'pd': 'pandas',
-    'scikit': 'scikitlearn',
-    'scikitlearn': 'scikitlearn',
-    'sklearn': 'scikitlearn',
-    'jupyter': 'jupyter',
-    'jupyternotebook': 'jupyter',
-    'vscode': 'vscode',
-    'visualstudiocode': 'vscode',
-    'figma': 'figma',
-    'postman': 'postman',
-    'npm': 'npm',
-    'yarn': 'yarn',
-    'webpack': 'webpack',
-    'vite': 'vite',
-    'arduino': 'arduino',
-    'raspberry': 'raspberrypi',
-    'raspberrypi': 'raspberrypi',
-    'rpi': 'raspberrypi',
-    'esp32': 'esp32',
-    'jest': 'jest',
-    'cypress': 'cypress',
-    'playwright': 'playwright',
-    'mocha': 'mocha',
-    'chai': 'chai',
-    'graphql': 'graphql',
-    'gql': 'graphql',
-    'redux': 'redux',
-    'socket.io': 'socketio',
-    'socketio': 'socketio',
-    'three.js': 'threejs',
-    'threejs': 'threejs',
-    'd3.js': 'd3',
-    'd3': 'd3',
-    'chart.js': 'chartjs',
-    'chartjs': 'chartjs',
-  };
-
-  // Check variations
-  if (variations[normalizedTech]) {
-    const variation = variations[normalizedTech];
-    if (ICON_MAP.has(variation)) {
-      return ICON_MAP.get(variation)!;
+  // Key containment match
+  for (const [key, comp] of Object.entries(ICON_COMPONENT_MAP)) {
+    if (normalized.length >= 3 && (normalized.includes(key) || (key.length >= 3 && key.includes(normalized)))) {
+      return comp;
     }
   }
 
-  // Check partial matches
-  for (const [key] of ICON_MAP.entries()) {
-    if (normalizedTech.includes(key) || key.includes(normalizedTech)) {
-      return ICON_MAP.get(key)!;
-    }
-  }
-
-  // Fallback icon
-  return 'simple-icons:code';
+  return Code2;
 };
 
-// Helper function to check if icon exists
 export const hasIcon = (techName: string): boolean => {
   const normalized = normalizeTechName(techName);
-  const icon = findBestIcon(normalized);
-  return icon !== 'simple-icons:code';
-};
-
-// Export icon names for debugging
-export const getAvailableIcons = (): string[] => {
-  return Array.from(ICON_MAP.keys());
-};
-
-// Get cached icon or find new one
-export const getCachedIcon = (techName: string): string => {
-  const normalized = normalizeTechName(techName);
-
-  if (iconCache.has(normalized)) {
-    return iconCache.get(normalized)!;
+  if (ICON_COMPONENT_MAP[normalized]) return true;
+  for (const key of Object.keys(ICON_COMPONENT_MAP)) {
+    if (normalized.length >= 3 && (normalized.includes(key) || (key.length >= 3 && key.includes(normalized)))) {
+      return true;
+    }
   }
+  return false;
+};
 
-  const foundIcon = findBestIcon(normalized);
-  iconCache.set(normalized, foundIcon);
-
-  return foundIcon;
+export const getCachedIcon = (techName: string): string => {
+  return techName;
 };

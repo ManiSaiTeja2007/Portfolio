@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "bun@1.4.3",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,10 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify/icons-simple-icons": "^1.2.74",
-    "@iconify/react": "^6.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "devicon": "^2.17.0",
     "framer-motion": "^12.23.25",
     "immer": "^11.0.1",
     "lucide-react": "^1.17.0",

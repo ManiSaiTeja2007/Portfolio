@@ -1,9 +1,8 @@
 // src/components/common/Icon/Icon.tsx
-import { Icon as IconifyIcon } from '@iconify/react';
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { getCachedIcon } from './IconUtils';
+import { getTechIconComponent } from './IconUtils';
 
 const iconVariants = cva(
   'inline-flex items-center justify-center',
@@ -53,11 +52,8 @@ export const TechIcon = memo(({
   className = '', 
   color = 'default',
   variant = 'default',
-  fallbackIcon = 'simple-icons:code'
 }: IconProps) => {
-  const iconName = useMemo(() => {
-    return getCachedIcon(name);
-  }, [name]);
+  const IconComponent = getTechIconComponent(name);
 
   const iconSize = typeof size === 'number' ? size : 
     size === 'xs' ? 16 :
@@ -72,15 +68,9 @@ export const TechIcon = memo(({
       className={cn(iconVariants({ variant, size: sizeClass, color, className }))}
       title={name}
     >
-      <IconifyIcon 
-        icon={iconName} 
-        width={iconSize}
-        height={iconSize}
-        className="current-color"
-        onError={(e) => {
-          // Fallback to a different icon on error
-          e.currentTarget.setAttribute('icon', fallbackIcon);
-        }}
+      <IconComponent 
+        size={iconSize}
+        className="shrink-0"
       />
     </div>
   );

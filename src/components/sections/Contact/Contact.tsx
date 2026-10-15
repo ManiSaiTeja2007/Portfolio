@@ -10,7 +10,7 @@ import {
   AlertCircle,
   Sparkles,
 } from "lucide-react";
-import { PERSONAL_INFO } from "@/utils/constants";
+import { PERSONAL_INFO, CONTACT_CONFIG, AVAILABILITY } from "@/utils/constants";
 
 interface FormFields {
   name: string;
@@ -142,7 +142,7 @@ export const Contact = () => {
       label: "Work Availability",
       value: "Seeking Internships",
       href: null,
-      desc: "Available for Summer 2026",
+      desc: `Available for ${AVAILABILITY.timeline}`,
     },
   ];
 
@@ -161,17 +161,15 @@ export const Contact = () => {
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full mb-4"
           >
             <Sparkles size={16} />
-            <span className="text-sm font-medium">Let's Collaborate</span>
+            <span className="text-sm font-medium">{CONTACT_CONFIG.badge}</span>
           </motion.div>
 
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-            Get In Touch
+            {CONTACT_CONFIG.heading}
           </h2>
 
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Have a project in mind, seeking an intern, or want to discuss
-            systems engineering? Send a message and I'll respond within 24
-            hours.
+            {CONTACT_CONFIG.subtitle}
           </p>
         </div>
 
@@ -225,14 +223,10 @@ export const Contact = () => {
               className="bg-gradient-to-br from-primary-brand/10 to-secondary-brand/10 dark:from-slate-800/50 dark:to-slate-800/20 border border-primary-brand/20 rounded-2xl p-6 text-center lg:text-left mt-6"
             >
               <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-2">
-                Why Collaborate?
+                {CONTACT_CONFIG.collaborationPitch.heading}
               </h4>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                You get a developer who understands both{' '}
-                <strong className="text-slate-800 dark:text-slate-200">embedded hardware constraints</strong>{' '}
-                and{' '}
-                <strong className="text-slate-800 dark:text-slate-200">scalable frontend architecture</strong>.
-                Let's construct high-fidelity interfaces backed by clean, efficient TypeScript code.
+                {CONTACT_CONFIG.collaborationPitch.description}
               </p>
             </motion.div>
           </div>
@@ -260,11 +254,10 @@ export const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
-                      Message Sent!
+                      {CONTACT_CONFIG.statusFeedback.successTitle}
                     </h3>
                     <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-                      Thank you for reaching out. Your message has been
-                      successfully received, and I'll get back to you shortly.
+                      {CONTACT_CONFIG.statusFeedback.successSubtitle}
                     </p>
                   </div>
                   <button

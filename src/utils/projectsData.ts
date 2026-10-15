@@ -4,16 +4,16 @@ import type { Project, ProjectCategory } from '@/types/project';
 export const projectCategories: ProjectCategory[] = [
   {
     id: 'react',
-    name: 'React & Web Tooling',
+    name: 'Telemetry Tools & Interfaces',
     color: 'text-cyan-600 dark:text-cyan-400',
-    description: 'Local-first web applications, comparison engines, and interactive developer interfaces',
+    description: 'Local-first interfaces, telemetry dashboards, comparison engines, and interactive tooling',
     projects: [
       {
         id: 'manisaitejabejjala-portfolio',
         title: 'ManiSaiTejaBejjalaPortfolio - Hardware-Informed Portfolio',
-        description: 'A professional, high-performance developer portfolio website highlighting the unique intersection of low-level systems thinking and modern web development.',
-        shortDescription: 'Systems-informed developer portfolio showing hardware and software synergy',
-        problem: 'Standard developer portfolios look generic and fail to highlight how an ECE background (understanding hardware registers and memory) benefits frontend performance and layout optimization.',
+        description: 'A professional, high-performance developer portfolio website highlighting the intersection of robotics, low-level systems thinking, and clean interface engineering.',
+        shortDescription: 'Systems & robotics-informed developer portfolio showing hardware and software synergy',
+        problem: 'Standard developer portfolios look generic and fail to highlight how an ECE background (understanding hardware registers, sensors, and control loops) benefits systems design and low-overhead software.',
         solution: 'Built a lightweight, responsive React 19 SPA utilizing Tailwind CSS for styling and Framer Motion for stable, layout-shift-free animations. Integrated dynamic GitHub stat displays and a metric tracker.',
         impact: 'Achieved a perfect 100/100 Lighthouse performance rating with a page load time of under 1.2s and zero Cumulative Layout Shift (CLS).',
         imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',

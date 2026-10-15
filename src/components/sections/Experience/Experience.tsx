@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Users, Trophy, ChevronRight } from 'lucide-react';
 import { experiencesData } from '@/utils/experienceData';
+import { EXPERIENCE_CONFIG } from '@/utils/constants';
 
 type IconKey = 'GraduationCap' | 'Trophy' | 'Briefcase' | 'Users';
 
@@ -48,13 +49,13 @@ export const Experience = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-            My Journey So Far
+            {EXPERIENCE_CONFIG.badge}
           </span>
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-            Learning & Growth Path
+            {EXPERIENCE_CONFIG.heading}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Building a strong foundation in hardware principles, full-stack systems architecture, and competitive algorithmic practice.
+            {EXPERIENCE_CONFIG.subtitle}
           </p>
         </motion.div>
 
@@ -131,29 +132,10 @@ export const Experience = () => {
           className="mt-20 pt-12 border-t border-slate-200 dark:border-slate-800"
         >
           <h3 className="text-2xl font-poppins font-bold text-slate-900 dark:text-white mb-8 text-center">
-            Looking Ahead
+            {EXPERIENCE_CONFIG.lookingAheadHeading}
           </h3>
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              {
-                goal: 'Technical Internships',
-                description: 'Apply ECE + full-stack knowledge in real-world production environments.',
-                icon: '🎯',
-                color: 'border-blue-200 dark:border-blue-800/40 hover:border-blue-400',
-              },
-              {
-                goal: 'System Projects',
-                description: 'Develop high-performance systems combining hardware-level logic with modern interfaces.',
-                icon: '⚙️',
-                color: 'border-purple-200 dark:border-purple-800/40 hover:border-purple-400',
-              },
-              {
-                goal: 'Open-Source Leadership',
-                description: 'Contribute core features and reusable libraries to popular developer packages.',
-                icon: '🌟',
-                color: 'border-amber-200 dark:border-amber-800/40 hover:border-amber-400',
-              },
-            ].map((item, index) => (
+            {EXPERIENCE_CONFIG.lookingAheadGoals.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 15 }}

@@ -3,15 +3,6 @@ import { motion } from 'framer-motion';
 import { Zap, Terminal, Cpu, Wifi, Activity } from 'lucide-react';
 import { FUN_FACTS } from '@/utils/constants';
 
-const terminalLines = [
-  { prompt: '$', text: 'whoami', color: 'text-slate-300' },
-  { prompt: '>', text: 'mani_sai_teja_bejjala :: ECE_Engineer + Software_Dev', color: 'text-emerald-400' },
-  { prompt: '$', text: 'cat /etc/interests', color: 'text-slate-300' },
-  { prompt: '>', text: '[IoT, Orbital_Physics, Systems_Design, Open_Source, Edge_AI]', color: 'text-cyan-400' },
-  { prompt: '$', text: 'systemctl status curiosity.service', color: 'text-slate-300' },
-  { prompt: '●', text: 'curiosity.service - Active (running) for 20 years, 3 months', color: 'text-emerald-400' },
-];
-
 export const FunFact = () => {
   return (
     <section id="fun-fact" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-900/30 transition-colors duration-300">
@@ -29,7 +20,7 @@ export const FunFact = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-            Behind the Code
+            {FUN_FACTS.badge}
           </span>
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white">
             Telemetry &{' '}
@@ -77,7 +68,7 @@ export const FunFact = () => {
 
             {/* Left: Fake terminal output */}
             <div className="space-y-2 font-mono text-sm">
-              {terminalLines.map((line, idx) => (
+              {FUN_FACTS.terminalLines.map((line, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -10 }}

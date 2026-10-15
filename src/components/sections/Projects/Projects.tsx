@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectCard } from '../../common/Cards/ProjectCard';
 import { featuredProjects, getAllProjects, getTieredProjects } from '@/utils/projectsData';
+import { PROJECTS_CONFIG } from '@/utils/constants';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Sparkles, Layers, Cpu, Globe, BarChart2, ChevronUp } from 'lucide-react';
 
@@ -48,14 +49,14 @@ export const Projects = () => {
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full mb-5"
           >
             <Sparkles size={15} />
-            <span className="text-sm font-medium">Strategic Project Portfolio</span>
+            <span className="text-sm font-medium">{PROJECTS_CONFIG.badge}</span>
           </motion.div>
 
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-            Building Solutions That Matter
+            {PROJECTS_CONFIG.heading}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Each project showcases a unique technical challenge — organized to demonstrate depth across systems, UI, edge AI, and data analytics.
+            {PROJECTS_CONFIG.subtitle}
           </p>
         </motion.div>
 
@@ -107,10 +108,10 @@ export const Projects = () => {
               <div className="text-center py-16">
                 <div className="text-6xl mb-4">🔍</div>
                 <h3 className="text-xl font-semibold text-slate-700 dark:text-slate-300 mb-2">
-                  No projects in this category yet
+                  {PROJECTS_CONFIG.emptyMessage}
                 </h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">
-                  More coming soon — check back or view all projects
+                  {PROJECTS_CONFIG.emptySubtext}
                 </p>
               </div>
             ) : (
@@ -174,10 +175,10 @@ export const Projects = () => {
           viewport={{ once: true }}
           className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 font-mono"
         >
-          <span>Projects demonstrating technical breadth and systems thinking</span>
+          <span>{PROJECTS_CONFIG.footerNote}</span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            Available for project discussions
+            {PROJECTS_CONFIG.footerAvailability}
           </span>
         </motion.div>
 

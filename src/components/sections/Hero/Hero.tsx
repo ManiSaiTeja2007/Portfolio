@@ -14,23 +14,15 @@ import {
   Wifi,
   Circle,
 } from "lucide-react";
-import { PERSONAL_INFO, ACADEMIC_INFO } from "@/utils/constants";
-
-const TYPING_TEXTS = [
-  "Data Analyst & Systems Engineer",
-  "ECE Student @ IIIT Sri City",
-  "Full-Stack Developer",
-  "Edge AI Enthusiast",
-];
+import { PERSONAL_INFO, ACADEMIC_INFO, HERO_CONFIG } from "@/utils/constants";
 
 const useTypingEffect = (texts: string[], speed = 60, pause = 2000) => {
-  const [displayed, setDisplayed] = useState("");
   const [textIdx, setTextIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const current = texts[textIdx];
+    const current = texts[textIdx] ?? "";
     if (!deleting && charIdx < current.length) {
       const t = setTimeout(() => setCharIdx((c) => c + 1), speed);
       return () => clearTimeout(t);
@@ -44,23 +36,23 @@ const useTypingEffect = (texts: string[], speed = 60, pause = 2000) => {
       return () => clearTimeout(t);
     }
     if (deleting && charIdx === 0) {
-      setDeleting(false);
-      setTextIdx((i) => (i + 1) % texts.length);
+      const t = setTimeout(() => {
+        setDeleting(false);
+        setTextIdx((i) => (i + 1) % texts.length);
+      }, speed);
+      return () => clearTimeout(t);
     }
   }, [charIdx, deleting, textIdx, texts, speed, pause]);
 
-  useEffect(() => {
-    setDisplayed(texts[textIdx].slice(0, charIdx));
-  }, [charIdx, textIdx, texts]);
-
-  return displayed;
+  const current = texts[textIdx] ?? "";
+  return current.slice(0, charIdx);
 };
 
 export const Hero = () => {
   const [gateA, setGateA] = useState<number>(1);
   const [gateB, setGateB] = useState<number>(0);
   const [time, setTime] = useState(new Date());
-  const typedText = useTypingEffect(TYPING_TEXTS);
+  const typedText = useTypingEffect(HERO_CONFIG.typingTexts);
 
   const outAnd = gateA & gateB;
   const outOr = gateA | gateB;
@@ -71,15 +63,6 @@ export const Hero = () => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
-
-  const techPills = [
-    { label: "React", color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" },
-    { label: "TypeScript", color: "text-blue-400 bg-blue-500/10 border-blue-500/30" },
-    { label: "Go", color: "text-teal-400 bg-teal-500/10 border-teal-500/30" },
-    { label: "Python", color: "text-yellow-400 bg-yellow-500/10 border-yellow-500/30" },
-    { label: "Kotlin", color: "text-purple-400 bg-purple-500/10 border-purple-500/30" },
-    { label: "VHDL", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" },
-  ];
 
   const gateResults = [
     { name: "AND", expr: "A & B", result: outAnd, color: "text-indigo-400" },
@@ -131,18 +114,18 @@ export const Hero = () => {
                 <Zap className="w-3.5 h-3.5 text-amber-500" />
               </span>
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                Hardware-Informed Software
+                {HERO_CONFIG.badgeText}
               </span>
               <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                LIVE
+                {HERO_CONFIG.liveBadgeText}
               </span>
             </motion.div>
 
             {/* Name headline */}
             <div className="space-y-2">
               <span className="block text-slate-500 dark:text-slate-400 text-base font-medium tracking-wide">
-                Hello, I'm
+                {HERO_CONFIG.greeting}
               </span>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-poppins font-extrabold tracking-tight leading-none">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-purple-500 to-secondary-500 dark:from-indigo-400 dark:via-purple-400 dark:to-teal-400">
@@ -168,7 +151,7 @@ export const Hero = () => {
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/60 dark:bg-slate-900/50 rounded-xl border border-slate-200/60 dark:border-slate-800/60 text-sm text-slate-600 dark:text-slate-400">
                 <MapPin size={14} className="text-emerald-500" />
-                <span>IIIT Sri City</span>
+                <span>{PERSONAL_INFO.college.split(',')[0]}</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/60 dark:bg-slate-900/50 rounded-xl border border-slate-200/60 dark:border-slate-800/60 text-sm text-slate-600 dark:text-slate-400">
                 <GitBranch size={14} className="text-purple-500" />
@@ -178,9 +161,11 @@ export const Hero = () => {
 
             {/* Description */}
             <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
-              Building bridges between <strong className="text-slate-800 dark:text-slate-200">hardware intelligence</strong> and{" "}
-              <strong className="text-slate-800 dark:text-slate-200">software elegance</strong>. My ECE background fuels a
-              systems-level mindset — optimizing for performance, efficiency, and scale.
+              {HERO_CONFIG.descriptionLead}{" "}
+              <strong className="text-slate-800 dark:text-slate-200">{HERO_CONFIG.descriptionHighlight1}</strong>
+              {HERO_CONFIG.descriptionMiddle}{" "}
+              <strong className="text-slate-800 dark:text-slate-200">{HERO_CONFIG.descriptionHighlight2}</strong>
+              {HERO_CONFIG.descriptionEnd}
             </p>
 
             {/* CTA Buttons */}
@@ -189,7 +174,7 @@ export const Hero = () => {
                 href="#projects"
                 className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-2xl font-semibold shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 hover:-translate-y-0.5 transition-all duration-300 text-sm"
               >
-                <span>View Projects</span>
+                <span>{HERO_CONFIG.ctaProjects}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -197,14 +182,14 @@ export const Hero = () => {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-2xl font-semibold hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 hover:-translate-y-0.5 transition-all duration-300 text-sm"
               >
-                <span>Let's Connect</span>
+                <span>{HERO_CONFIG.ctaContact}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
 
             {/* Tech pills strip */}
             <div className="flex flex-wrap gap-2 pt-1">
-              {techPills.map((pill) => (
+              {HERO_CONFIG.techPills.map((pill) => (
                 <span
                   key={pill.label}
                   className={`px-3 py-1 rounded-full text-xs font-mono font-semibold border ${pill.color} transition-transform hover:scale-105`}

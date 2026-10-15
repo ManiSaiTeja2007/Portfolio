@@ -3,22 +3,24 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TechIcon } from '@/components/common/Icon/Icon';
 import { getSkillsByCategory } from '@/utils/skillsData';
-import { Layers, Code2, Cpu, Cloud, Database, Wrench, Smartphone, TestTube, BrainCircuit, Globe, Filter } from 'lucide-react';
+import { SKILLS_CONFIG } from '@/utils/constants';
+import { Layers, Code2, Cpu, Cloud, Database, Wrench, Smartphone, TestTube, BrainCircuit, Globe, Filter, Bot } from 'lucide-react';
 
 const CATEGORY_CONFIG: Record<string, { label: string; icon: React.ReactNode; color: string }> = {
-  frontend:     { label: 'Frontend',      icon: <Globe size={14} />,        color: 'text-cyan-500 border-cyan-500/30 bg-cyan-500/10' },
-  backend:      { label: 'Backend',       icon: <Code2 size={14} />,        color: 'text-blue-500 border-blue-500/30 bg-blue-500/10' },
-  languages:    { label: 'Languages',     icon: <Layers size={14} />,       color: 'text-violet-500 border-violet-500/30 bg-violet-500/10' },
-  ai_ml:        { label: 'AI / ML',       icon: <BrainCircuit size={14} />, color: 'text-pink-500 border-pink-500/30 bg-pink-500/10' },
-  database:     { label: 'Databases',     icon: <Database size={14} />,     color: 'text-amber-500 border-amber-500/30 bg-amber-500/10' },
-  cloud_devops: { label: 'Cloud & DevOps',icon: <Cloud size={14} />,        color: 'text-sky-500 border-sky-500/30 bg-sky-500/10' },
-  hardware_iot: { label: 'Hardware & IoT',icon: <Cpu size={14} />,          color: 'text-emerald-500 border-emerald-500/30 bg-emerald-500/10' },
-  tools:        { label: 'Tools',         icon: <Wrench size={14} />,       color: 'text-orange-500 border-orange-500/30 bg-orange-500/10' },
-  testing:      { label: 'Testing',       icon: <TestTube size={14} />,     color: 'text-red-500 border-red-500/30 bg-red-500/10' },
-  mobile:       { label: 'Mobile',        icon: <Smartphone size={14} />,   color: 'text-teal-500 border-teal-500/30 bg-teal-500/10' },
+  robotics:     { label: 'Robotics & Control', icon: <Bot size={14} />,          color: 'text-indigo-500 border-indigo-500/30 bg-indigo-500/10' },
+  hardware_iot: { label: 'Hardware & Embedded',icon: <Cpu size={14} />,          color: 'text-emerald-500 border-emerald-500/30 bg-emerald-500/10' },
+  languages:    { label: 'Languages',         icon: <Layers size={14} />,       color: 'text-violet-500 border-violet-500/30 bg-violet-500/10' },
+  ai_ml:        { label: 'AI & Vision',       icon: <BrainCircuit size={14} />, color: 'text-pink-500 border-pink-500/30 bg-pink-500/10' },
+  cloud_devops: { label: 'Systems & DevOps',  icon: <Cloud size={14} />,        color: 'text-sky-500 border-sky-500/30 bg-sky-500/10' },
+  database:     { label: 'Databases',         icon: <Database size={14} />,     color: 'text-amber-500 border-amber-500/30 bg-amber-500/10' },
+  frontend:     { label: 'UI & Dashboards',   icon: <Globe size={14} />,        color: 'text-cyan-500 border-cyan-500/30 bg-cyan-500/10' },
+  tools:        { label: 'Tools',             icon: <Wrench size={14} />,       color: 'text-orange-500 border-orange-500/30 bg-orange-500/10' },
+  backend:      { label: 'Backend',           icon: <Code2 size={14} />,        color: 'text-blue-500 border-blue-500/30 bg-blue-500/10' },
+  testing:      { label: 'Testing',           icon: <TestTube size={14} />,     color: 'text-red-500 border-red-500/30 bg-red-500/10' },
+  mobile:       { label: 'Mobile',            icon: <Smartphone size={14} />,   color: 'text-teal-500 border-teal-500/30 bg-teal-500/10' },
 };
 
-const CATEGORY_ORDER = ['frontend','backend','languages','ai_ml','database','cloud_devops','hardware_iot','tools','testing','mobile'];
+const CATEGORY_ORDER = ['robotics', 'hardware_iot', 'languages', 'ai_ml', 'cloud_devops', 'database', 'frontend', 'tools', 'backend', 'testing', 'mobile'];
 
 export const Skills = () => {
   const skillsByCategory = getSkillsByCategory();
@@ -46,13 +48,13 @@ export const Skills = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-            Technical Toolkit
+            {SKILLS_CONFIG.badge}
           </span>
           <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-            Technologies I Work With
+            {SKILLS_CONFIG.heading}
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            {totalSkills}+ technologies spanning hardware to cloud — combining ECE knowledge with modern software development.
+            {totalSkills}{SKILLS_CONFIG.subtitleSuffix}
           </p>
         </motion.div>
 

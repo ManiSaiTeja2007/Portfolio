@@ -1,14 +1,17 @@
 # Mani Sai Teja Bejjala - Portfolio
 
-> Hardware-Informed Frontend & Full Stack Developer | IIIT Sri City
+> Robotics & Systems Engineer | ECE Student @ IIIT Sri City | Seeking Summer 2027 Internships
 
 ## About
-Mani Sai Teja Bejjala is a Full-Stack Engineer and Hardware Enthusiast specializing in React, TypeScript, Vite, Tailwind CSS, and System Architecture.
+Mani Sai Teja Bejjala is a 3rd-year Electronics and Communication Engineering (ECE) student at IIIT Sri City specializing in robotics, embedded systems, autonomous control, and sensor fusion. Actively seeking technical internships for Summer 2027.
 
-## Key Projects
-- **Portfolio Website**: Interactive developer portfolio built with React, Vite, Framer Motion, and Tailwind CSS.
-- **Hardware & Software Integrations**: Projects integrating low-level hardware awareness with modern front-end interfaces.
+## Key Projects & Areas
+- **Robotics & Control**: ROS2/ROS robotic simulations, kinematic modeling, and PID motor control.
+- **Embedded Systems**: Real-time firmware, peripheral drivers (I2C/SPI/UART), and microcontrollers (STM32, ESP32, Arduino).
+- **Edge AI & Computer Vision**: OpenCV vision pipelines, on-device OCR zoning, and sensor fusion (IMU, LiDAR).
+- **High-Performance Systems & Physics**: Space debris orbital propagation models (Python/Julia) and distributed L7 gateways (Go).
 
 ## Core Skills & Technologies
-- **Frontend**: React 19, TypeScript, Tailwind CSS, Framer Motion, Vite, Zustand
-- **Backend & Tooling**: Node.js, REST APIs, SonarCloud, Chrome DevTools, Git
+- **Robotics & Hardware**: ROS, Gazebo, OpenCV, STM32, ESP32, Arduino, FreeRTOS, Raspberry Pi
+- **Languages**: C++, C, Python, Go, Rust, TypeScript
+- **Systems & Tools**: Linux, Git, Docker, Prometheus, Bun, Vite

@@ -3,16 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowUp, Mail, MapPin, ExternalLink, Heart, Terminal } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaKaggle } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { PERSONAL_INFO, SOCIAL_LINKS } from '@/utils/constants';
-
-const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Stats', href: '#stats' },
-  { label: 'Contact', href: '#contact' },
-];
+import { PERSONAL_INFO, SOCIAL_LINKS, NAV_LINKS, FOOTER_CONFIG } from '@/utils/constants';
 
 const socialLinks = [
   { label: 'GitHub', href: SOCIAL_LINKS.github, icon: <FaGithub size={16} />, color: 'hover:text-white hover:bg-slate-700' },
@@ -66,8 +57,7 @@ export const Footer = () => {
             </div>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              ECE student at IIIT Sri City bridging hardware intelligence with modern software development.
-              Building systems that matter — from silicon to interface.
+              {FOOTER_CONFIG.bio}
             </p>
 
             {/* Contact info */}
@@ -81,7 +71,7 @@ export const Footer = () => {
               </a>
               <div className="flex items-center gap-2.5 text-slate-500 text-sm">
                 <MapPin size={14} className="text-emerald-500" />
-                Chittoor, Andhra Pradesh, India
+                {PERSONAL_INFO.location}
               </div>
             </div>
 
@@ -108,7 +98,7 @@ export const Footer = () => {
               Navigation
             </h3>
             <nav className="grid grid-cols-2 gap-2">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -132,7 +122,7 @@ export const Footer = () => {
               {[
                 { label: 'GitHub', sub: 'manisaiteja2007', href: SOCIAL_LINKS.github, color: 'text-slate-300' },
                 { label: 'LinkedIn', sub: 'mani-sai-teja-bejjala', href: SOCIAL_LINKS.linkedin, color: 'text-blue-400' },
-                { label: 'LeetCode', sub: '150+ problems', href: 'https://leetcode.com/u/manisaiteja2007/', color: 'text-orange-400' },
+                { label: 'LeetCode', sub: '150+ problems', href: SOCIAL_LINKS.leetcode, color: 'text-orange-400' },
                 { label: 'Kaggle', sub: 'bejjalamanisaiteja', href: SOCIAL_LINKS.kaggle, color: 'text-cyan-400' },
               ].map((p) => (
                 <a
@@ -155,9 +145,9 @@ export const Footer = () => {
             <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-emerald-400 text-xs font-semibold">Seeking Internships</span>
+                <span className="text-emerald-400 text-xs font-semibold">{FOOTER_CONFIG.statusTitle}</span>
               </div>
-              <p className="text-slate-500 text-xs mt-1 font-mono">Available for Summer 2026</p>
+              <p className="text-slate-500 text-xs mt-1 font-mono">{FOOTER_CONFIG.statusTimeline}</p>
             </div>
           </div>
         </motion.div>

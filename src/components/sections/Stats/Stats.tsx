@@ -13,6 +13,7 @@ import {
 import { FaGithub } from 'react-icons/fa';
 import { useEffect, useReducer, useCallback, memo } from 'react';
 import { statsService } from '@/services/statsService';
+import { STATS_CONFIG, SOCIAL_LINKS } from '@/utils/constants';
 
 // Types
 interface GitHubStats {
@@ -293,7 +294,7 @@ export const Stats = () => {
       value: '150+ problems solved',
       icon: <Code size={18} />,
       color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20 border-orange-500/20',
-      url: 'https://leetcode.com/u/manisaiteja2007/'
+      url: SOCIAL_LINKS.leetcode,
     },
     {
       id: 'codechef',
@@ -318,13 +319,13 @@ export const Stats = () => {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-2 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-full text-sm font-medium mb-4">
-              GitHub Live Console
+              {STATS_CONFIG.badge}
             </span>
             <h2 className="text-4xl font-poppins font-bold text-slate-900 dark:text-white">
-              System Telemetry
+              {STATS_CONFIG.heading}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4 font-sans">
-              Real-time hardware & software activity dashboard logs from my public endpoints.
+              {STATS_CONFIG.subtitle}
             </p>
           </m.div>
 

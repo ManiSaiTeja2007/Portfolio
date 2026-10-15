@@ -26,6 +26,7 @@ next.md
 .cache/
 
 # Sonar / Security tokens
+.scannerwork/
 .env
 .env*
 .sonar-token
